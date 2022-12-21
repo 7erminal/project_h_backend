@@ -94,6 +94,15 @@ class Countries(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now=True, blank=True)
 
+class Payment_methods(models.Model):
+	payment_method_id = models.AutoField(primary_key=True)
+	payment_method_name = models.CharField(max_length=100)
+	active = models.BooleanField(default=1)
+	created_by = models.IntegerField(null=True, blank=True)
+	updated_by = models.IntegerField(null=True, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
 class Payments(models.Model):
 	payment_from = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payment_for_user_id')
 	payment_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payment_to_user_id')
@@ -120,4 +129,13 @@ class One_time_pin(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 
 
+class User_payment_methods(models.Model):
+	user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payment_method_user_id')
+	payment_method = models.ForeignKey(Payment_methods, on_delete=models.CASCADE, related_name='user_payment_method')
+	expired = models.DateTimeField(auto_now=True)
+	active = models.BooleanField(default=1)
+	created_by = models.IntegerField(null=True, blank=True)
+	updated_by = models.IntegerField(null=True, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 

@@ -11,20 +11,83 @@ from django.contrib.auth.hashers import make_password
 from project_h_core.models import Hosted_service
 from project_h_core.models import Service_images
 from project_h_core.models import Services
+from project_h_core.models import Service_reviews
 
 from project_h_core.serializers import HostServiceSerializer
 from project_h_core.serializers import HostedServicesSerializer
+from project_h_core.serializers import AddReviewSerializer
+
+from project_h_core.serializers import IdSerializer
 
 import logging
 logger = logging.getLogger("django")
 
 class GetHostedServices(viewsets.ViewSet):
     def retrieve(self, request):
-        hosted_service = Hosted_service.objects.prefetch_related('hosted_service_images')
+        hosted_service = Hosted_service.objects.prefetch_related('hosted_service_images','hosted_service_reviews')
 
         logger.info(hosted_service.values())
 
         return Response(HostedServicesSerializer(hosted_service, many=True).data,status.HTTP_202_ACCEPTED)
+
+# Get Hosted Services by Category ID
+class GetHostedServicesByCategory(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            queryset_data = Hosted_service.objects.filter(service_id=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
+
+            logger.info('data returned for service reviews is ')
+            logger.info(HostedServicesSerializer(queryset_data, many=True).data)
+
+            return Response(HostedServicesSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+# Get Hosted Service Reviews
+class GetHostedServiceReviews(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            queryset_data = Hosted_service.objects.filter(hosted_service_id=serializer.data['id']).prefetch_related('hosted_service_reviews')
+
+            logger.info('data returned for service reviews is ')
+            logger.info(HostedServicesSerializer(queryset_data, many=True).data)
+
+            return Response(HostedServicesSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+# Add Review
+class AddReviewViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = AddReviewSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            hosted_service = Hosted_service.objects.get(hosted_service_id=serializer.data['hosted_service_id'])
+            user = User.objects.get(id=serializer.data['user_id'])
+           
+            hosted_service_review = Service_reviews(
+                    hosted_service=hosted_service,
+                    review_by = user,
+                    review=serializer.data['review'],
+                    active=1,
+                    created_by=serializer.data['user_id']
+                )
+
+            hosted_service_review.save()
+
+            hosted_service = Hosted_service.objects.filter(hosted_service_id=serializer.data['hosted_service_id']).prefetch_related('hosted_service_reviews');
+
+            logger.info("Hosted service reviews are/is .... ")
+            logger.info(HostedServicesSerializer(hosted_service, many=True).data)
+
+            return Response(HostedServicesSerializer(hosted_service, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
 
 # Register Customer
 class HostServiceViewSet(viewsets.ViewSet):

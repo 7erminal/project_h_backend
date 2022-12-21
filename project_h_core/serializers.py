@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from project_h_core.models import Customers
 from project_h_core.models import Service_images
 from project_h_core.models import Hosted_service
+from project_h_core.models import Service_reviews
+from project_h_core.models import Payment_methods
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -77,12 +79,35 @@ class ServiceSerializer(serializers.Serializer):
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     service_icon = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
 
+class HostedReviewsSerializer(serializers.ModelSerializer):
+    review_by = UserSerializer()
+    
+    class Meta:
+        model = Service_reviews
+        fields = '__all__'
+
 class HostedServicesSerializer(serializers.ModelSerializer):
     hosted_service_images = ImageSerializer(many=True)
+    hosted_service_reviews = HostedReviewsSerializer(many=True)
 
     class Meta:
         model = Hosted_service
         fields = '__all__'
 
+class AddReviewSerializer(serializers.Serializer):
+    hosted_service_id = serializers.CharField(max_length=10, required=True)
+    review = serializers.CharField(max_length=255, required=True)
+    user_id = serializers.CharField(max_length=5, required=True)
+
+class PaymentMethodsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment_methods
+        fields = '__all__'
+
+class userPaymentMethodsSerializer(serializers.Serializer):
+    user_id = serializers.CharField(max_length=10, required=False)
+    payment_method = serializers.CharField(max_length=255)
+    expired = serializers.CharField(max_length=50, required=False)
+    active = serializers.CharField(max_length=5)
 
 
