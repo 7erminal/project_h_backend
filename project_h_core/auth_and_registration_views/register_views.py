@@ -86,6 +86,7 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
         if serializer.is_valid(raise_exception=True):
             logger.info("About to save user ")
             logger.info(request.data)
+            logger.info(serializer.data['id_number'])
             logger.info(datetime.today)
             logger.info("image is ")
 
@@ -112,6 +113,10 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
 
             # save_customer.mobile_number=serializer.data['mobile_number']
             save_customer.address=serializer.data['address']
+
+            logger.info("ID Number is ")
+            logger.info(serializer.data['id_number'])
+            logger.info(serializer.data['id_type'])
 
             save_customer.id_type=serializer.data['id_type']
             save_customer.id_number=serializer.data['id_number']
