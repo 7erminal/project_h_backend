@@ -29,10 +29,22 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
         logger.info(request.query_params.get('id'))
 
         if serializer.is_valid(raise_exception=True):
-            queryset_data = User.objects.filter(customers__mobile_number=serializer.data['id']).select_related('customers');
+            # queryset_data = User.objects.filter(customers__mobile_number=serializer.data['id']).select_related('customers')
+            queryset_data = User.objects.raw("""SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, 
+                `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, 
+                `auth_user`.`date_joined`, `project_h_core_customers`.`customer_id`, `project_h_core_customers`.`user_id`, 
+                `project_h_core_customers`.`customer_number`, `project_h_core_customers`.`dob`, `project_h_core_customers`.`active`, 
+                `project_h_core_customers`.`is_verified`, `project_h_core_customers`.`ID_type_id`, `project_h_core_customers`.`ID_number`, 
+                `project_h_core_customers`.`language_id`, `project_h_core_customers`.`profession`, `project_h_core_customers`.`mobile_number`, 
+                `project_h_core_customers`.`gender`, `project_h_core_customers`.`picture`, `project_h_core_customers`.`other_names`, 
+                `project_h_core_customers`.`address`, `project_h_core_customers`.`location`, `project_h_core_customers`.`nationality`, 
+                `project_h_core_customers`.`dateTermsAndConditions`, `project_h_core_customers`.`datePrivacyPolicy`, `project_h_core_customers`.`is_host`, 
+                `project_h_core_customers`.`created_by`, `project_h_core_customers`.`updated_by`, `project_h_core_customers`.`created_at`, 
+                `project_h_core_customers`.`updated_at` FROM `auth_user` INNER JOIN `project_h_core_customers` 
+                ON (`auth_user`.`id` = `project_h_core_customers`.`user_id`) WHERE `project_h_core_customers`.`mobile_number` = %s""",[request.query_params.get('id')])
 
             logger.info(queryset_data.query)
-            logger.info(RegisterCustomerSerializer(queryset_data, many=True).data)
+            logger.info(UserSerializer(queryset_data, many=True).data)
 
             return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
         else:

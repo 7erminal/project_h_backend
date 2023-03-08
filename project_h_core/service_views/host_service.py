@@ -7,6 +7,7 @@ from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
 from django.contrib.auth.hashers import make_password
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from project_h_core.models import Hosted_service
 from project_h_core.models import Service_images
@@ -36,7 +37,10 @@ class GetHostedServicesByCategory(viewsets.ViewSet):
         serializer = IdSerializer(data=request.query_params)
 
         if serializer.is_valid(raise_exception=True):
-            queryset_data = Hosted_service.objects.filter(service_id=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
+            if serializer.data['id'] != '0':
+                queryset_data = Hosted_service.objects.filter(service_id=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
+            else:
+                queryset_data = Hosted_service.objects.prefetch_related('hosted_service_images','hosted_service_reviews')
 
             logger.info('data returned for service reviews is ')
             logger.info(HostedServicesSerializer(queryset_data, many=True).data)
@@ -98,16 +102,26 @@ class HostServiceViewSet(viewsets.ViewSet):
             logger.info("About to save service ")
             logger.info(request.data)
             logger.info(serializer.data['parent_service'])
+            logger.info(serializer.data)
 
             user_ = User.objects.get(id=serializer.data['id'])
             service_ = Services.objects.get(service_id=serializer.data['parent_service'])
+
+            logger.info(serializer.data['process'])
+
+            processed = serializer.data['process']
+
+            # if serializer.data['process'] != None:
+            #     stri = ","
+            #     processed = stri.join(processed)
+
 
             _hosted_service = Hosted_service(
                 service=service_,
                 service_name=serializer.data['service_name'],
                 description=serializer.data['description'],
                 location=serializer.data['location'],
-                process=serializer.data['process'],
+                process=processed,
                 expected_duration=serializer.data['duration'],
                 price=serializer.data['price'],
                 user=user_,

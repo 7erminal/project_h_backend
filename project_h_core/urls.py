@@ -35,6 +35,7 @@ router.register(r'validate-otp', one_time_pin.validateOTPViewSet, basename='vali
 router.register(r'host-service', host_service.HostServiceViewSet, basename='host-service')
 router.register(r'add-service-review', host_service.AddReviewViewSet, basename='add-service-review')
 router.register(r'add-user-payment-method', payment_view.AddUserPaymentMethod, basename='add-user-payment-view')
+router.register(r'update-customer-details', register_views.UpdateCustomerViewSet, basename='update-customer-details')
 router.register(r'upload_image', ImageUploader.ImageUploader, basename='upload_image')
 
 urlpatterns = [

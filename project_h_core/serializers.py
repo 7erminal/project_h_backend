@@ -49,7 +49,7 @@ class HostServiceSerializer(serializers.Serializer):
     service_name = serializers.CharField(max_length=50)
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     location = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
-    process = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
+    process = serializers.CharField(max_length=255, allow_null=True, allow_blank=True, required=False)
     duration = serializers.CharField(max_length=20, allow_null=True, allow_blank=True)
     price = serializers.CharField(allow_null=True, allow_blank=True)
     pictures = serializers.ListField(child=serializers.ImageField(required=False), required=False)
