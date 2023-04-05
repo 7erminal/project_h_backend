@@ -13,7 +13,7 @@ logger = logging.getLogger("django")
 from .serializers import RegisterCustomerSerializer
 from .serializers import IdSerializer
 from .serializers import UserSerializer
-from .serializers import ServiceSerializer
+from .serializers import ServicesAndSubCategoriesSerializer
 
 from project_h_core.models import Customers
 from project_h_core.models import Services
@@ -34,8 +34,8 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
                 `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, 
                 `auth_user`.`date_joined`, `project_h_core_customers`.`customer_id`, `project_h_core_customers`.`user_id`, 
                 `project_h_core_customers`.`customer_number`, `project_h_core_customers`.`dob`, `project_h_core_customers`.`active`, 
-                `project_h_core_customers`.`is_verified`, `project_h_core_customers`.`ID_type_id`, `project_h_core_customers`.`ID_number`, 
-                `project_h_core_customers`.`language_id`, `project_h_core_customers`.`profession`, `project_h_core_customers`.`mobile_number`, 
+                `project_h_core_customers`.`is_verified`, `project_h_core_customers`.`ID_type_id`, `project_h_core_customers`.`id_image`, `project_h_core_customers`.`ID_number`, 
+                `project_h_core_customers`.`language_id`, `project_h_core_customers`.`delivery_location`, `project_h_core_customers`.`profession`, `project_h_core_customers`.`mobile_number`, 
                 `project_h_core_customers`.`gender`, `project_h_core_customers`.`picture`, `project_h_core_customers`.`other_names`, 
                 `project_h_core_customers`.`address`, `project_h_core_customers`.`location`, `project_h_core_customers`.`nationality`, 
                 `project_h_core_customers`.`dateTermsAndConditions`, `project_h_core_customers`.`datePrivacyPolicy`, `project_h_core_customers`.`is_host`, 
@@ -53,5 +53,5 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
 
 class EssentialsViewSet(ObjectMultipleModelAPIView):
     querylist = [
-        {'queryset': Services.objects.all(), 'serializer_class': ServiceSerializer}
+        {'queryset': Services.objects.all(), 'serializer_class': ServicesAndSubCategoriesSerializer}
     ]

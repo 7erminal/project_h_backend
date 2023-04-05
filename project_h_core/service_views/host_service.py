@@ -93,7 +93,7 @@ class AddReviewViewSet(viewsets.ViewSet):
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
 
-# Register Customer
+# Add Hosted Service
 class HostServiceViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = HostServiceSerializer(data=request.data)
@@ -114,6 +114,16 @@ class HostServiceViewSet(viewsets.ViewSet):
             # if serializer.data['process'] != None:
             #     stri = ","
             #     processed = stri.join(processed)
+
+            sub_service = ''
+
+            if serializer.data['service_sub'] is not None:
+                sub_service = serializer.data['service_sub']
+
+                if serializer.data['selected_sub_fields'] is not None:
+                    for sub_service_field in serializer.data['selected_sub_fields']:
+                        logger.info("sub service")
+
 
 
             _hosted_service = Hosted_service(

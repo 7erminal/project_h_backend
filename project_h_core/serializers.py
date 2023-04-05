@@ -6,6 +6,12 @@ from project_h_core.models import Service_images
 from project_h_core.models import Hosted_service
 from project_h_core.models import Service_reviews
 from project_h_core.models import Payment_methods
+from project_h_core.models import Services_sub_categories
+from project_h_core.models import Services
+from project_h_core.models import HostDetails
+from project_h_core.models import Services_sub_category_fields
+from project_h_core.models import User_payment_methods
+from project_h_core.models import Requests
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -21,6 +27,14 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class HostDetailsSerializer(serializers.ModelSerializer):
+    customer = CustomerSerializer()
+
+    class Meta:
+        model = HostDetails
+        fields = '__all__'
+
 
 class RegisterCustomerSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
@@ -43,6 +57,19 @@ class RegisterCustomerSerializer(serializers.Serializer):
     is_host = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     language = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
 
+class HostSerializer(serializers.Serializer):
+    id = serializers.CharField(max_length=10, required=False)
+    location_cordinates = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    office_address = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    service_coverage_zone = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    official_certifications = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    number_of_years_practice_speciality = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    number_of_years_experience = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    specializations = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+    audio_video = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+    languages_spoken = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+    referrals = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+
 class HostServiceSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
     parent_service = serializers.CharField(max_length=40, allow_null=True, allow_blank=True, required=False)
@@ -53,6 +80,8 @@ class HostServiceSerializer(serializers.Serializer):
     duration = serializers.CharField(max_length=20, allow_null=True, allow_blank=True)
     price = serializers.CharField(allow_null=True, allow_blank=True)
     pictures = serializers.ListField(child=serializers.ImageField(required=False), required=False)
+    service_sub = serializers.CharField(max_length=100, allow_null=True, allow_blank=True)
+    selected_sub_fields = serializers.ListField(child=serializers.CharField(max_length=100, required=False, allow_null=True), required=False)
     # pictures = serializers.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
 
 class OTPSerializer(serializers.Serializer):
@@ -64,6 +93,10 @@ class OTPCheckSerializer(serializers.ModelSerializer):
     class Meta:
         model = One_time_pin
         fields = '__all__'
+
+class ProfilePictureSerializer(serializers.Serializer):
+    id = serializers.CharField(max_length=10, required=False)
+    picture = serializers.ImageField(max_length=255, required=False)
 
 class ImageSerializer(serializers.Serializer):
     service_image_id = serializers.CharField(max_length=10, required=False)
@@ -78,6 +111,26 @@ class ServiceSerializer(serializers.Serializer):
     service_name = serializers.CharField(max_length=40)
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     service_icon = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+
+class ServiceSubCategoriesSubsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Services_sub_category_fields
+        fields = '__all__'
+
+
+class ServiceSubCategoriesSerializer(serializers.ModelSerializer):
+    services_sub_category_field = ServiceSubCategoriesSubsSerializer(many=True)
+
+    class Meta:
+        model = Services_sub_categories
+        fields = '__all__'
+
+class ServicesAndSubCategoriesSerializer(serializers.ModelSerializer):
+    service_sub_service = ServiceSubCategoriesSerializer(many=True)
+    
+    class Meta:
+        model = Services
+        fields = '__all__'
 
 class HostedReviewsSerializer(serializers.ModelSerializer):
     review_by = UserSerializer()
@@ -106,8 +159,40 @@ class PaymentMethodsSerializer(serializers.ModelSerializer):
 
 class userPaymentMethodsSerializer(serializers.Serializer):
     user_id = serializers.CharField(max_length=10, required=False)
-    payment_method = serializers.CharField(max_length=255)
+    payment_method = serializers.CharField(max_length=255, required=False)
     expired = serializers.CharField(max_length=50, required=False)
-    active = serializers.CharField(max_length=5)
+    payment_method_number = serializers.CharField(max_length=50, required=False)
+    active = serializers.CharField(max_length=5, required=False)
+
+class UserPaymentMethodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User_payment_methods
+        fields = '__all__'
+
+class RequestSerializer(serializers.Serializer):
+    request_id = serializers.CharField(max_length=10, required=False)
+    host_service_id = serializers.CharField(max_length=10, required=False, allow_null=True, allow_blank=True)
+    requester_id = serializers.CharField(max_length=10, required=False, allow_null=True, allow_blank=True)
+    choices = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    preferences = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+    host = serializers.CharField(max_length=10, required=False, allow_null=True, allow_blank=True)
+    charge = serializers.FloatField(required=False, allow_null=True)
+    payment_option = serializers.CharField(max_length=10, required=False, allow_null=True, allow_blank=True)
+
+class RequestsSerializer(serializers.ModelSerializer):
+    host_service = HostedServicesSerializer()
+    requester = UserSerializer()
+    payment_method = PaymentMethodsSerializer()
+    payment_option = UserPaymentMethodSerializer()
+
+    class Meta:
+        model = Requests
+        fields = '__all__'
+
+class SearchSerializer(serializers.Serializer):
+    search_words = serializers.ListField(child=serializers.CharField(max_length=255), required=True)
+
+
+
 
 
