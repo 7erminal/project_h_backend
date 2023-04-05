@@ -59,6 +59,7 @@ class RegisterCustomerSerializer(serializers.Serializer):
 
 class HostSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
+    host_name = serializers.CharField(max_length=100, required=False, allow_null=True)
     location_cordinates = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
     office_address = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
     service_coverage_zone = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
@@ -73,14 +74,14 @@ class HostSerializer(serializers.Serializer):
 class HostServiceSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
     parent_service = serializers.CharField(max_length=40, allow_null=True, allow_blank=True, required=False)
-    service_name = serializers.CharField(max_length=50)
+    service_name = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     location = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
     process = serializers.CharField(max_length=255, allow_null=True, allow_blank=True, required=False)
     duration = serializers.CharField(max_length=20, allow_null=True, allow_blank=True)
     price = serializers.CharField(allow_null=True, allow_blank=True)
     pictures = serializers.ListField(child=serializers.ImageField(required=False), required=False)
-    service_sub = serializers.CharField(max_length=100, allow_null=True, allow_blank=True)
+    service_sub = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
     selected_sub_fields = serializers.ListField(child=serializers.CharField(max_length=100, required=False, allow_null=True), required=False)
     # pictures = serializers.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
 

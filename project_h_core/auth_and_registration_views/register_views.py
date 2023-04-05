@@ -210,6 +210,11 @@ class UpdateHostDetails(viewsets.ViewSet):
             save_customer = Customers.objects.get(user=save_user)
 
     
+            host_name = ''
+
+            if serializer.data['host_name'] != '' or serializer.data['host_name'] is not None:
+                host_name = serializer.data['host_name']
+
             location_cordinates = ''
 
             if serializer.data['location_cordinates'] != '' or serializer.data['location_cordinates'] is not None:
@@ -262,6 +267,7 @@ class UpdateHostDetails(viewsets.ViewSet):
                 if 'audio_video' in request.FILES:
                     save_host_details = HostDetails(
                             customer=save_customer,
+                            host_name=host_name,
                             location_cordinates=location_cordinates,
                             office_address=office_address,
                             service_coverage_zone=service_coverage_zone,
@@ -275,6 +281,7 @@ class UpdateHostDetails(viewsets.ViewSet):
                         )
                 else:
                     save_host_details = HostDetails(
+                            host_name=host_name,
                             customer=save_customer,
                             location_cordinates=location_cordinates,
                             office_address=office_address,
@@ -291,10 +298,15 @@ class UpdateHostDetails(viewsets.ViewSet):
 
                 save_host_details.save()
 
+                save_customer.is_host = 1
+
+                save_customer.save()
+
                 logger.info(queryset_data.query)
             else:
                 save_host_details = HostDetails.objects.get(customer=save_customer)
 
+                save_host_details.host_name = host_name
                 save_host_details.customer = save_customer
                 save_host_details.location_cordinates = location_cordinates
                 save_host_details.office_address = office_address
@@ -310,6 +322,10 @@ class UpdateHostDetails(viewsets.ViewSet):
                     save_host_details.audio_video = request.FILES['audio_video']
 
                 save_host_details.save()
+
+                save_customer.is_host = 1
+
+                save_customer.save()
 
             queryset_data = HostDetails.objects.filter(host_details_id=save_host_details.host_details_id).select_related('customer')
             # queryset_data = HostDetails.objects.get(host_details_id=save_host_details.host_details_id)

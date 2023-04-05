@@ -13,6 +13,8 @@ from project_h_core.models import Hosted_service
 from project_h_core.models import Service_images
 from project_h_core.models import Services
 from project_h_core.models import Service_reviews
+from project_h_core.models import HostDetails
+from project_h_core.models import Customers
 
 from project_h_core.serializers import HostServiceSerializer
 from project_h_core.serializers import HostedServicesSerializer
@@ -67,7 +69,7 @@ class GetHostedServiceReviews(viewsets.ViewSet):
 # Add Review
 class AddReviewViewSet(viewsets.ViewSet):
     def create(self, request):
-        serializer = AddReviewSerializer(data=request.data)
+        serializer = RequestSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
             hosted_service = Hosted_service.objects.get(hosted_service_id=serializer.data['hosted_service_id'])
@@ -111,6 +113,10 @@ class HostServiceViewSet(viewsets.ViewSet):
 
             processed = serializer.data['process']
 
+            customer_ = Customers.objects.get(user=user_)
+
+            hostDetails = HostDetails.objects.get(customer=customer_)
+
             # if serializer.data['process'] != None:
             #     stri = ","
             #     processed = stri.join(processed)
@@ -124,11 +130,21 @@ class HostServiceViewSet(viewsets.ViewSet):
                     for sub_service_field in serializer.data['selected_sub_fields']:
                         logger.info("sub service")
 
+            service_name = ''
 
+            if hostDetails.host_name is not None or hostDetails.host_name != '':
+                service_name = hostDetails.host_name
+            elif serializer.data['service_name'] is not None:
+                if serializer.data['service_name'] != "":
+                    service_name = serializer.data['service_name']
+                else:
+                    service_name = serializer.data['description']
+            else:
+                service_name = serializer.data['description']
 
             _hosted_service = Hosted_service(
                 service=service_,
-                service_name=serializer.data['service_name'],
+                service_name=service_name,
                 description=serializer.data['description'],
                 location=serializer.data['location'],
                 process=processed,

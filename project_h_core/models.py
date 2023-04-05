@@ -38,6 +38,7 @@ class Customers(models.Model):
 
 class HostDetails(models.Model):
 	host_details_id = models.AutoField(primary_key=True)
+	host_name = models.CharField(max_length=50, null=True)
 	customer = models.OneToOneField(Customers, on_delete=models.CASCADE, default=1)
 	location_cordinates = models.CharField(max_length=80, null=True, blank=True)
 	office_address = models.CharField(max_length=80, null=True, blank=True)
@@ -112,7 +113,7 @@ class Services_sub_category_fields(models.Model):
 class Hosted_service(models.Model):
 	hosted_service_id = models.AutoField(primary_key=True)
 	service = models.ForeignKey(Services, null=True, blank=True, on_delete=models.CASCADE, related_name='hosted_service_service')
-	service_name =  models.CharField(max_length=50, unique=True)
+	service_name =  models.CharField(max_length=50)
 	service_sub = models.CharField(max_length=50, null=True, blank=True)
 	service_sub_selected_fields = models.CharField(max_length=255, null=True, blank=True)
 	description = models.TextField(null=True, blank=True)
