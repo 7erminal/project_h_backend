@@ -69,7 +69,7 @@ class GetHostedServiceReviews(viewsets.ViewSet):
 # Add Review
 class AddReviewViewSet(viewsets.ViewSet):
     def create(self, request):
-        serializer = RequestSerializer(data=request.data)
+        serializer = AddReviewSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
             hosted_service = Hosted_service.objects.get(hosted_service_id=serializer.data['hosted_service_id'])
