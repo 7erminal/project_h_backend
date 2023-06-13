@@ -12,11 +12,21 @@ from project_h_core.models import HostDetails
 from project_h_core.models import Services_sub_category_fields
 from project_h_core.models import User_payment_methods
 from project_h_core.models import Requests
+from project_h_core.models import RequestNotice
+from project_h_core.models import RequestResponses
+from project_h_core.models import RequestNoticeResponses
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
 
+class HostDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HostDetails
+        fields = '__all__'
+
 class CustomerSerializer(serializers.ModelSerializer):
+    hostdetails = HostDetailsSerializer()
+    
     class Meta:
         model = Customers
         fields = '__all__'
@@ -26,13 +36,6 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
-
-class HostDetailsSerializer(serializers.ModelSerializer):
-    customer = CustomerSerializer()
-
-    class Meta:
-        model = HostDetails
         fields = '__all__'
 
 
@@ -191,9 +194,42 @@ class RequestsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SearchSerializer(serializers.Serializer):
+    user = serializers.IntegerField(required=False, allow_null=True)
     search_words = serializers.ListField(child=serializers.CharField(max_length=255), required=True)
+    category = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+    key_words = serializers.CharField(max_length=200, required=False, allow_null=True, allow_blank=True)
+    location = serializers.CharField(max_length=100, required=False, allow_null=True, allow_blank=True)
 
 
+class RequestNoticeSerializer(serializers.ModelSerializer):
+    category = ServiceSerializer()
+    created_by = UserSerializer()
 
+    class Meta:
+        model = RequestNotice
+        fields = '__all__'
+
+class ResponseSerializer(serializers.Serializer):
+    request_id = serializers.CharField(required=True, max_length=50)
+    response = serializers.CharField(max_length=250, required=False, allow_null=True, allow_blank=True)
+    accepted = serializers.IntegerField(required=False, allow_null=True)
+    is_first_response = serializers.BooleanField(required=False, allow_null=True)
+    user = serializers.CharField(required=False, max_length=50)
+
+class RequestNoticeResponseSerializer(serializers.ModelSerializer):
+    request_notice = RequestNoticeSerializer()
+    created_by = UserSerializer()
+
+    class Meta:
+        model = RequestNoticeResponses
+        fields = '__all__'
+
+class RequestResponseSerializer(serializers.ModelSerializer):
+    request = RequestsSerializer()
+    created_by = UserSerializer()
+
+    class Meta:
+        model = RequestResponses
+        fields = '__all__'
 
 

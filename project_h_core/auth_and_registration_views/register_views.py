@@ -186,6 +186,9 @@ class GetHostDetails(viewsets.ViewSet):
     def retrieve(self, request):
         serializer = IdSerializer(data=request.query_params)
 
+        logger.info("request received is ")
+        logger.info(request.query_params)
+
         if serializer.is_valid(raise_exception=True):
             save_user = User.objects.get(id=serializer.data['id']) 
 

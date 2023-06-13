@@ -43,6 +43,9 @@ router.register(r'update-customer-image', register_views.UpdateProfileImage, bas
 router.register(r'update-host-details', register_views.UpdateHostDetails, basename='update-host-details')
 router.register(r'request-service', request_service.RequestServiceViewSet, basename='request-service')
 router.register(r'search', search.SearchViewSet, basename='search')
+router.register(r'request-service-post', search.RequestServiceNoticeViewSet, basename='request-service-post')
+router.register(r'respond-to-request', request_service.RespondToRequest, basename='respond-to-request')
+router.register(r'respond-to-request-notice', request_service.RespondToRequestNotice, basename='respond-to-request-notice')
 
 
 urlpatterns = [
@@ -51,14 +54,22 @@ urlpatterns = [
     path('get-user-with-phone-number', getUserWithPhoneNumberViewSet.as_view({'get': 'retrieve'}), name='check-user-exist'),
     path('essentials/', EssentialsViewSet.as_view(), name='essentials'),
     path('hosted-services-by-category/', host_service.GetHostedServicesByCategory.as_view({'get': 'retrieve'}), name='get-hosted-services-by-category'),
+    path('hosted-services-by-user/', host_service.GetHostedServicesByUser.as_view({'get': 'retrieve'}), name='get-hosted-services-by-user'),
     path('hosted-services/', host_service.GetHostedServices.as_view({'get': 'retrieve'}), name='get-hosted-services'),
     path('get-payment-methods/', payment_view.GetPaymentMethods.as_view({'get': 'retrieve'}), name='get-payment-methods'),
     path('get-user-payment-methods/', payment_view.GetUserPaymentMethods.as_view({'get': 'retrieve'}), name='get-user-payment-methods'),
     path('hosted-service-reviews/', host_service.GetHostedServiceReviews.as_view({'get': 'retrieve'}), name='get-hosted-service-reviews'),
     path('get-host-details/', register_views.GetHostDetails.as_view({'get': 'retrieve'}), name='get-host-details'),
     path('get-all-requests/', request_service.GetAllRequests.as_view({'get': 'retrieve'}), name='get-all-requests'),
-    path('get-requests-by-user/', request_service.GetRequestsByUserId.as_view({'get': 'retrieve'}), name='get-requests-by-user'),
+    path('get-requests-by-user', request_service.GetRequestsByUserId.as_view({'get': 'retrieve'}), name='get-requests-by-user'),
+    path('get-requests-for-artisan', request_service.GetRequestsForArtisan.as_view({'get': 'retrieve'}), name='get-requests-for-artisan'),
     # path('generate-otp', one_time_pin.GenerateOTPViewSet.as_view({'get': 'retrieve'}), name='generate-otp'),
+    path('get-all-posted-requests/', request_service.GetAllPostedRequests.as_view({'get': 'retrieve'}), name='get-all-posted-requests'),
+    path('get-all-active-posted-requests', request_service.GetAllActivePostedRequests.as_view({'get': 'retrieve'}), name='get-all-active-posted-requests'),
+    path('get-all-posted-requests-by-category', request_service.GetPostedRequestsByCategory.as_view({'get': 'retrieve'}), name='get-all-posted-requests-by-category'),
+    path('get-all-posted-requests-by-user', request_service.GetPostedRequestsByUser.as_view({'get': 'retrieve'}), name='get-all-posted-requests-by-user'),
+    path('update-request-notice-view-count', request_service.updateRequestNoticeViewCount.as_view({'get': 'retrieve'}), name='update-request-notice-view-count'),
+
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

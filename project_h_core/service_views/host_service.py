@@ -51,6 +51,21 @@ class GetHostedServicesByCategory(viewsets.ViewSet):
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
+# Get Hosted Services by User
+class GetHostedServicesByUser(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            queryset_data = Hosted_service.objects.filter(user=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
+            
+            logger.info('data returned for my hosted services is ')
+            logger.info(HostedServicesSerializer(queryset_data, many=True).data)
+
+            return Response(HostedServicesSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
 # Get Hosted Service Reviews
 class GetHostedServiceReviews(viewsets.ViewSet):
     def retrieve(self, request):
