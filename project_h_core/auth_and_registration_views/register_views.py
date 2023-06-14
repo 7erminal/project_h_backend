@@ -53,6 +53,7 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
             logger.info(customer_number)
 
             if 'picture' in request.FILES:
+                logger.info("Picture there ")
                 save_customer = Customers(
                     user=save_user,
                     customer_number=customer_number,
@@ -64,6 +65,7 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
                     # address=serializer.data['address'],
                 )
             else:
+                logger.info("Picture not there ")
                 save_customer = Customers(
                     user=save_user,
                     customer_number=customer_number,
@@ -76,6 +78,8 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
                 )
 
             save_customer.save()
+
+            logger.info("Customer saved ")
 
             queryset_data = User.objects.filter(id=save_user.id).select_related('customers')
 

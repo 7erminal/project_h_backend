@@ -29,7 +29,7 @@ class GetHostedServices(viewsets.ViewSet):
     def retrieve(self, request):
         hosted_service = Hosted_service.objects.prefetch_related('hosted_service_images','hosted_service_reviews')
 
-        logger.info(hosted_service.values())
+        # logger.info(hosted_service.values())
 
         return Response(HostedServicesSerializer(hosted_service, many=True).data,status.HTTP_202_ACCEPTED)
 
@@ -39,7 +39,7 @@ class GetHostedServicesByCategory(viewsets.ViewSet):
         serializer = IdSerializer(data=request.query_params)
 
         if serializer.is_valid(raise_exception=True):
-            if serializer.data['id'] != '0':
+            if serializer.data['id'] != '1':
                 queryset_data = Hosted_service.objects.filter(service_id=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
             else:
                 queryset_data = Hosted_service.objects.prefetch_related('hosted_service_images','hosted_service_reviews')
