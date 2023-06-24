@@ -100,7 +100,7 @@ class AddUserPaymentMethod(viewsets.ViewSet):
 				passed_validation = True
 
 			if serializer.data['payment_method'] == '2':
-				if not Momo.objects.filter(number=serializer.data['payment_method_number']):
+				if not Momo.objects.filter(number=serializer.data['payment_method_number'], created_by=serializer.data['user_id']):
 					momo = Momo(
 							user_id=user,
 							number=serializer.data['payment_method_number'],
@@ -134,7 +134,7 @@ class AddUserPaymentMethod(viewsets.ViewSet):
 
 				queryset_data = User_payment_methods.objects.filter(id=user_payment_methods.id)
 			else:
-				queryset_data = User_payment_methods.objects.filter(user_id=user, payment_method=payment_method)
+				queryset_data = User_payment_methods.objects.filter(user_id=serializer.data['user_id'], payment_method=payment_method)
 
 			return Response(UserPaymentMethodSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
 		else:

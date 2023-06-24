@@ -197,7 +197,7 @@ class GetHostDetails(viewsets.ViewSet):
             save_user = User.objects.get(id=serializer.data['id']) 
 
             save_customer = Customers.objects.get(user=save_user)
-            queryset_data = HostDetails.objects.filter(customer=save_customer).select_related('customer')
+            queryset_data = HostDetails.objects.filter(customer=save_customer)
             return Response(HostDetailsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
