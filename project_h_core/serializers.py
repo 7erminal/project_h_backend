@@ -216,6 +216,10 @@ class ResponseSerializer(serializers.Serializer):
     is_first_response = serializers.BooleanField(required=False, allow_null=True)
     user = serializers.CharField(required=False, max_length=50)
 
+class ViewCountUpdateSerializer(serializers.Serializer):
+    request_id = serializers.CharField(required=True, max_length=50)
+    
+
 class RequestNoticeResponseSerializer(serializers.ModelSerializer):
     request_notice = RequestNoticeSerializer()
     created_by = UserSerializer()
@@ -232,4 +236,8 @@ class RequestResponseSerializer(serializers.ModelSerializer):
         model = RequestResponses
         fields = '__all__'
 
+class ConversationSerializer(serializers.Serializer):
+    request_id = serializers.CharField(required=True, max_length=50)
+    artisan_id = serializers.CharField(required=True, max_length=50)
+    user_id = serializers.CharField(required=True, max_length=50)
 

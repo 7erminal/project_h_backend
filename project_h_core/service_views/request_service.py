@@ -8,6 +8,7 @@ from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
 from django.contrib.auth.hashers import make_password
 from rest_framework.parsers import MultiPartParser, FormParser
+from django.db.models import Q
 
 from project_h_core.models import Hosted_service
 from project_h_core.models import Cards
@@ -23,6 +24,7 @@ from project_h_core.models import RequestNoticeResponses
 from project_h_core.serializers import RequestSerializer
 from project_h_core.serializers import RequestsSerializer
 from project_h_core.serializers import UserPaymentMethodSerializer
+from project_h_core.serializers import ConversationSerializer
 
 from project_h_core.serializers import IdSerializer
 from project_h_core.serializers import RequestNoticeSerializer
@@ -52,8 +54,9 @@ class GetRequestsByUserId(viewsets.ViewSet):
             user = User.objects.get(id=serializer.data['id'])
             queryset_data = Requests.objects.filter(requester=user)
  
-            logger.info('data returned for service reviews is ')
-            logger.info(RequestsSerializer(queryset_data, many=True).data)
+            logger.info('data returned for service requests is ')
+            # logger.info(RequestsSerializer(queryset_data, many=True).data)
+            logger.info(queryset_data.values())
 
             return Response(RequestsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
         else:
@@ -69,8 +72,9 @@ class GetRequestsForArtisan(viewsets.ViewSet):
             user = User.objects.get(id=serializer.data['id'])
             queryset_data = Requests.objects.filter(host_service__user=user)
  
-            logger.info('data returned for service reviews is ')
-            logger.info(RequestsSerializer(queryset_data, many=True).data)
+            logger.info('data returned for artisav services is ')
+            # logger.info(RequestsSerializer(queryset_data, many=True).data)
+            logger.info(queryset_data.values())
 
             return Response(RequestsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
         else:
@@ -299,3 +303,80 @@ class updateRequestNoticeViewCount(viewsets.ViewSet):
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
+
+# Get User posted request responses
+# These are the responses artisans send to customers who have posted requirements in requests for a service
+class GetUserPostedRequestsResponses(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            user = User.objects.get(id=serializer.data['id'])
+            queryset_data = RequestNoticeResponses.objects.filter(request_notice__created_by=user)
+ 
+            logger.info('data returned for requests responses is ')
+            logger.info(RequestNoticeResponseSerializer(queryset_data, many=True).data)
+
+            return Response(RequestNoticeResponseSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+
+# Get User request responses
+# When a user requests a service, the artisan is alerted. 
+# When the artisan responds to that request, the notice is fetched here.
+class GetUserRequestsResponses(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            user = User.objects.get(id=serializer.data['id'])
+            queryset_data = RequestResponses.objects.filter(request__requester=user)
+ 
+            logger.info('data returned for requests responses is ')
+            logger.info(RequestResponseSerializer(queryset_data, many=True).data)
+
+            return Response(RequestResponseSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+
+# Get User posted request responses
+# These are the responses artisans send to customers who have posted requirements in requests for a service
+class GetUserPostedRequestsResponsesByRequestId(viewsets.ViewSet):
+    def create(self, request):
+        serializer = ConversationSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            request_ = RequestNotice.objects.get(request_id=serializer.data['request_id'])
+            user = User.objects.get(id=serializer.data['user_id'])
+            artisan = User.objects.get(id=serializer.data['artisan_id'])
+            queryset_data = RequestNoticeResponses.objects.get(Q(request_notice=request_), Q(created_by=user) | Q(created_by=artisan))
+ 
+            logger.info('data returned for requests responses is ')
+            logger.info(RequestNoticeResponseSerializer(queryset_data, many=True).data)
+
+            return Response(RequestNoticeResponseSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+
+# Get User request responses
+# When a user requests a service, the artisan is alerted. 
+# When the artisan responds to that request, the notice is fetched here.
+class GetUserRequestsResponsesByRequestId(viewsets.ViewSet):
+    def create(self, request):
+        serializer = ConversationSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            request_ = Requests.objects.get(request_id=serializer.data['request_id'])
+            user = User.objects.get(id=serializer.data['user_id'])
+            artisan = User.objects.get(id=serializer.data['artisan_id'])
+            queryset_data = RequestResponses.objects.filter(Q(request=request_), Q(created_by=user) | Q(created_by=artisan))
+ 
+            logger.info('data returned for requests responses is ')
+            logger.info(RequestResponseSerializer(queryset_data, many=True).data)
+
+            return Response(RequestResponseSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
