@@ -16,7 +16,7 @@ class Customers(models.Model):
 	active = models.SmallIntegerField(null=True, blank=True)
 	is_verified = models.SmallIntegerField(null=True, blank=True)
 	ID_type = models.ForeignKey(IDTypes, null=True, blank=True, on_delete=models.CASCADE, related_name='customer_id_type')
-	ID_number = models.IntegerField(null=True)
+	ID_number = models.CharField(max_length=50, null=True, blank=True)
 	language_id = models.IntegerField(null=True)
 	profession = models.CharField(max_length=50, null=True, blank=True)
 	mobile_number = models.CharField(max_length=50, null=True, unique=True)
@@ -262,8 +262,11 @@ class RequestNotice(models.Model):
 	updated_at = models.DateTimeField(auto_now=True, blank=True)
 
 class RequestResponses(models.Model):
+	class Meta():
+		index_together = [['conversation_id']]
 	request_response_id = models.AutoField(primary_key=True)
 	request = models.ForeignKey(Requests, on_delete=models.CASCADE, related_name='response_request')
+	conversation_id = models.CharField(max_length=255, null=True, blank=True)
 	response = models.TextField(null=True, blank=True)
 	accepted = models.SmallIntegerField(default=2)
 	is_first_response = models.BooleanField(default=0)
@@ -274,8 +277,11 @@ class RequestResponses(models.Model):
 	updated_at = models.DateTimeField(auto_now=True, blank=True)
 
 class RequestNoticeResponses(models.Model):
+	class Meta():
+		index_together = [['conversation_id']]
 	request_response_id = models.AutoField(primary_key=True)
 	request_notice = models.ForeignKey(RequestNotice, on_delete=models.CASCADE, related_name='response_request_notice')
+	conversation_id = models.CharField(max_length=255, null=True, blank=True)
 	accepted = models.SmallIntegerField(default=2)
 	response = models.TextField(null=True, blank=True)
 	is_first_response = models.BooleanField(default=0)

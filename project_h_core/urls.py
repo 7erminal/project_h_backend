@@ -46,8 +46,9 @@ router.register(r'search', search.SearchViewSet, basename='search')
 router.register(r'request-service-post', search.RequestServiceNoticeViewSet, basename='request-service-post')
 router.register(r'respond-to-request', request_service.RespondToRequest, basename='respond-to-request')
 router.register(r'respond-to-request-notice', request_service.RespondToRequestNotice, basename='respond-to-request-notice')
+router.register(r'get-request-by-request', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
 router.register(r'get-request-conversation', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
-router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByRequestId, basename='get-request-notice-conversation')
+router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo, basename='get-request-notice-conversation')
 
 
 urlpatterns = [
@@ -73,6 +74,8 @@ urlpatterns = [
     path('update-request-notice-view-count', request_service.updateRequestNoticeViewCount.as_view({'get': 'retrieve'}), name='update-request-notice-view-count'),
     path('get-user-requests-responses', request_service.GetUserRequestsResponses.as_view({'get': 'retrieve'}), name='get-user-requests-responses'),
     path('get-user-posted-requests-responses', request_service.GetUserPostedRequestsResponses.as_view({'get': 'retrieve'}), name='get-user-posted-requests-responses'),
+    path('get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo.as_view({'get': 'retrieve'}), name='get-request-notice-conversation'),
+    path('get-request-notice-by-request', request_service.GetUserPostedRequestsResponsesByRequestId.as_view({'get': 'retrieve'}), name='get-request-notice-by-request'),
 
 ]
 

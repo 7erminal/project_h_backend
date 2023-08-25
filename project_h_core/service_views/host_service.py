@@ -27,7 +27,7 @@ logger = logging.getLogger("django")
 
 class GetHostedServices(viewsets.ViewSet):
     def retrieve(self, request):
-        hosted_service = Hosted_service.objects.prefetch_related('hosted_service_images','hosted_service_reviews')
+        hosted_service = Hosted_service.objects.all()
 
         # logger.info(hosted_service.values())
 
@@ -61,7 +61,7 @@ class GetHostedServicesByUser(viewsets.ViewSet):
         serializer = IdSerializer(data=request.query_params)
 
         if serializer.is_valid(raise_exception=True):
-            queryset_data = Hosted_service.objects.filter(user=serializer.data['id']).prefetch_related('hosted_service_images','hosted_service_reviews')
+            queryset_data = Hosted_service.objects.filter(user=serializer.data['id'])
             
             logger.info('data returned for my hosted services is ')
             logger.info(HostedServicesSerializer(queryset_data, many=True).data)

@@ -146,6 +146,7 @@ class HostedReviewsSerializer(serializers.ModelSerializer):
 class HostedServicesSerializer(serializers.ModelSerializer):
     hosted_service_images = ImageSerializer(many=True)
     hosted_service_reviews = HostedReviewsSerializer(many=True)
+    user =  UserSerializer()
 
     class Meta:
         model = Hosted_service
@@ -215,6 +216,7 @@ class ResponseSerializer(serializers.Serializer):
     accepted = serializers.IntegerField(required=False, allow_null=True)
     is_first_response = serializers.BooleanField(required=False, allow_null=True)
     user = serializers.CharField(required=False, max_length=50)
+    conversation_id = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
 
 class ViewCountUpdateSerializer(serializers.Serializer):
     request_id = serializers.CharField(required=True, max_length=50)
@@ -238,6 +240,6 @@ class RequestResponseSerializer(serializers.ModelSerializer):
 
 class ConversationSerializer(serializers.Serializer):
     request_id = serializers.CharField(required=True, max_length=50)
-    artisan_id = serializers.CharField(required=True, max_length=50)
-    user_id = serializers.CharField(required=True, max_length=50)
+    artisan_id = serializers.CharField(required=False, max_length=50)
+    user_id = serializers.CharField(required=False, max_length=50)
 
