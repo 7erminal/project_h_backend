@@ -29,6 +29,7 @@ from project_h_core.service_views import ImageUploader
 from project_h_core.service_views import request_service
 from project_h_core.views import EssentialsViewSet
 from project_h_core.service_views import search
+from project_h_core.application_properties import get_properties
 
 router = routers.DefaultRouter()
 router.register(r'register-customer', register_views.RegisterCustomerViewSet, basename='register-customer')
@@ -76,7 +77,9 @@ urlpatterns = [
     path('get-user-posted-requests-responses', request_service.GetUserPostedRequestsResponses.as_view({'get': 'retrieve'}), name='get-user-posted-requests-responses'),
     path('get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo.as_view({'get': 'retrieve'}), name='get-request-notice-conversation'),
     path('get-request-notice-by-request', request_service.GetUserPostedRequestsResponsesByRequestId.as_view({'get': 'retrieve'}), name='get-request-notice-by-request'),
-
+    # path('get-service-categories', get_properties.GetServiceCategories.as_view({'get': 'retrieve'}), name='get-service-categories'),
+    path('get-profile-menu', get_properties.GetServiceCategories.as_view({'get': 'retrieve'}), name='get-profile-menu'),
+    path('update-language', register_views.updateLanguage.as_view({'get': 'retrieve'}), name='update-language'),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

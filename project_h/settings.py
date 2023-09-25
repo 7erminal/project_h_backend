@@ -97,11 +97,11 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project_h',
-        'USER': 'laravel',
-        'PASSWORD': '',
+        'USER': 'root',
+        'PASSWORD': 'T34m1na!2@123',
         # 'USER': 'root',
         # 'PASSWORD': 't3nn1sCL0B@12',
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+        #'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
         'PORT': '3306',
 
     }

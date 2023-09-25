@@ -10,13 +10,17 @@ from django.contrib.auth.hashers import make_password
 import logging
 logger = logging.getLogger("django")
 
-from .serializers import RegisterCustomerSerializer
+from .serializers import ProfileMenuSerializer
 from .serializers import IdSerializer
 from .serializers import UserSerializer
+from .serializers import LanguageSerializer
+from .serializers import ApplicationPropertySerializer
 from .serializers import ServicesAndSubCategoriesSerializer
 
-from project_h_core.models import Customers
 from project_h_core.models import Services
+from project_h_core.models import ProfileMenu
+from project_h_core.models import Language
+from project_h_core.models import ApplicationProperties
 
 
 # Create your views here.
@@ -56,5 +60,8 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
 
 class EssentialsViewSet(ObjectMultipleModelAPIView):
     querylist = [
-        {'queryset': Services.objects.all(), 'serializer_class': ServicesAndSubCategoriesSerializer}
+        {'queryset': Services.objects.all(), 'serializer_class': ServicesAndSubCategoriesSerializer},
+        {'queryset': ProfileMenu.objects.all(), 'serializer_class': ProfileMenuSerializer},
+        {'queryset': Language.objects.all(), 'serializer_class': LanguageSerializer},
+        {'queryset': ApplicationProperties.objects.all(), 'serializer_class': ApplicationPropertySerializer}
     ]

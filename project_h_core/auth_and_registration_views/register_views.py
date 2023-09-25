@@ -20,6 +20,7 @@ from project_h_core.serializers import IdSerializer
 from project_h_core.serializers import ProfilePictureSerializer
 from project_h_core.serializers import HostSerializer
 from project_h_core.serializers import HostDetailsSerializer
+from project_h_core.serializers import SetLanguageSerializer
 
 # Register Customer
 class RegisterCustomerViewSet(viewsets.ViewSet):
@@ -341,7 +342,25 @@ class UpdateHostDetails(viewsets.ViewSet):
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
+#update language
+class updateLanguage(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = SetLanguageSerializer(data=request.query_params)
 
+        if serializer.is_valid(raise_exception=True):
+            # user = User.objects.get(id=serializer.data['userid'])
+            logger.info("parameters received is ")
+            logger.info(serializer)
+            customer = Customers.objects.get(user__id=int(serializer.data['userid']))
 
+            customer.language_id = serializer.data['languageid']
 
+            customer.save()
+ 
+            # logger.info(RequestsSerializer(queryset_data, many=True).data)
 
+            queryset_data = User.objects.filter(id=serializer.data['userid']).select_related('customers')
+
+            return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)

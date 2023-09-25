@@ -15,6 +15,10 @@ from project_h_core.models import Requests
 from project_h_core.models import RequestNotice
 from project_h_core.models import RequestResponses
 from project_h_core.models import RequestNoticeResponses
+from project_h_core.models import ServiceCategories
+from project_h_core.models import ProfileMenu
+from project_h_core.models import Language
+from project_h_core.models import ApplicationProperties
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -243,3 +247,36 @@ class ConversationSerializer(serializers.Serializer):
     artisan_id = serializers.CharField(required=False, max_length=50)
     user_id = serializers.CharField(required=False, max_length=50)
 
+class ServiceCategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceCategories
+        fields = '__all__'
+
+class ProfileMenuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfileMenu
+        fields = '__all__'
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = '__all__'
+
+class ApplicationPropertySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ApplicationProperties
+        fields = '__all__'
+
+class ServiceCategoriesResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    service_categories = ServiceCategoriesSerializer()
+
+class ProfileMenuResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    service_categories = ProfileMenuSerializer()
+
+class SetLanguageSerializer(serializers.Serializer):
+    userid = serializers.CharField(max_length=10, required=False)
+    languageid = serializers.CharField(max_length=10, required=False)
