@@ -16,11 +16,13 @@ from .serializers import UserSerializer
 from .serializers import LanguageSerializer
 from .serializers import ApplicationPropertySerializer
 from .serializers import ServicesAndSubCategoriesSerializer
+from .serializers import CurrenciesSerializer
 
 from project_h_core.models import Services
 from project_h_core.models import ProfileMenu
 from project_h_core.models import Language
 from project_h_core.models import ApplicationProperties
+from project_h_core.models import Currencies
 
 
 # Create your views here.
@@ -61,6 +63,7 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
 class EssentialsViewSet(ObjectMultipleModelAPIView):
     querylist = [
         {'queryset': Services.objects.all(), 'serializer_class': ServicesAndSubCategoriesSerializer},
+        {'queryset': Currencies.objects.all(), 'serializer_class': CurrenciesSerializer},
         {'queryset': ProfileMenu.objects.all(), 'serializer_class': ProfileMenuSerializer},
         {'queryset': Language.objects.all(), 'serializer_class': LanguageSerializer},
         {'queryset': ApplicationProperties.objects.all(), 'serializer_class': ApplicationPropertySerializer}

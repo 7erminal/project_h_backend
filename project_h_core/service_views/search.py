@@ -12,6 +12,8 @@ from project_h_core.serializers import SearchSerializer
 from project_h_core.serializers import HostedServicesSerializer
 from project_h_core.serializers import RequestNoticeSerializer
 
+from django.db.models import Q
+
 import logging
 logger = logging.getLogger("django")
 
@@ -29,7 +31,7 @@ class SearchViewSet(viewsets.ViewSet):
 			logger.info(serializer.data['search_words'][0])
 
 			if list_len > 0:
-				queryset_data = Hosted_service.objects.filter(description__icontains=serializer.data['search_words'][0]).prefetch_related('hosted_service_reviews')
+				queryset_data = Hosted_service.objects.filter(Q(description__icontains=serializer.data['search_words'][0]) | Q(service_name__icontains=serializer.data['search_words'][0]) | Q(process__icontains=serializer.data['search_words'][0]) | Q(location__icontains=serializer.data['search_words'][0]) ).prefetch_related('hosted_service_reviews')
 				return Response(HostedServicesSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
 			else:
 				return Response("Request Failed", status=status.HTTP_201_CREATED)

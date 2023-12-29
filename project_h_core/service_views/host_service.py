@@ -202,7 +202,7 @@ class HostServiceViewSet(viewsets.ViewSet):
 
                 images_.save()
 
-            hosted_service = Hosted_service.objects.filter(hosted_service_id=_hosted_service.hosted_service_id).prefetch_related('hosted_service_images')
+            hosted_service = Hosted_service.objects.filter(hosted_service_id=_hosted_service.hosted_service_id).select_related()
 
             logger.info("Hosted service added is ")
             logger.info(hosted_service.values())

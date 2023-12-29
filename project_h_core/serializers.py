@@ -19,6 +19,7 @@ from project_h_core.models import ServiceCategories
 from project_h_core.models import ProfileMenu
 from project_h_core.models import Language
 from project_h_core.models import ApplicationProperties
+from project_h_core.models import Currencies
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -147,10 +148,16 @@ class HostedReviewsSerializer(serializers.ModelSerializer):
         model = Service_reviews
         fields = '__all__'
 
+class CurrenciesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Currencies
+        fields = '__all__'
+        
 class HostedServicesSerializer(serializers.ModelSerializer):
     hosted_service_images = ImageSerializer(many=True)
     hosted_service_reviews = HostedReviewsSerializer(many=True)
     user =  UserSerializer()
+    charge_currency = CurrenciesSerializer()
 
     class Meta:
         model = Hosted_service

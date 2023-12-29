@@ -119,6 +119,16 @@ class Services_sub_category_fields(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now=True, blank=True)
 
+class Currencies(models.Model):
+	currency_id = models.AutoField(primary_key=True)
+	currency_name = models.CharField(max_length=150)
+	currency_symbol = models.CharField(max_length=5)
+	active=models.BooleanField(default=1)
+	created_by = models.IntegerField(null=True, blank=True)
+	updated_by = models.IntegerField(null=True, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True, blank=True)
+	updated_at = models.DateTimeField(auto_now=True, blank=True)
+
 class Hosted_service(models.Model):
 	hosted_service_id = models.AutoField(primary_key=True)
 	service = models.ForeignKey(Services, null=True, blank=True, on_delete=models.CASCADE, related_name='hosted_service_service')
@@ -133,6 +143,7 @@ class Hosted_service(models.Model):
 	active = models.SmallIntegerField(null=True, blank=True)
 	expected_duration = models.CharField(max_length=20, null=True, blank=True)
 	price = models.FloatField(default=0)
+	charge_currency = models.ForeignKey(Currencies, null=True, on_delete=models.CASCADE, related_name='hosted_service_currency_id')
 	part_payment_allowed = models.SmallIntegerField(null=True, blank=True)
 	created_by = models.IntegerField(null=True, blank=True)
 	updated_by = models.IntegerField(null=True, blank=True)
