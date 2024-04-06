@@ -21,6 +21,13 @@ from project_h_core.serializers import ProfilePictureSerializer
 from project_h_core.serializers import HostSerializer
 from project_h_core.serializers import HostDetailsSerializer
 from project_h_core.serializers import SetLanguageSerializer
+from project_h_core.serializers import authenticationSerializer
+
+class Resp:
+	def __init__(self, message, user, status):
+		self.message=message
+		self.user=user
+		self.status=status
 
 # Register Customer
 class RegisterCustomerViewSet(viewsets.ViewSet):
@@ -188,6 +195,39 @@ class UpdateProfileImage(viewsets.ViewSet):
 
             return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
 
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+# Update Customer Password
+class UpdateCustomerPasswordViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = authenticationSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            logger.info("About to save user ")
+            logger.info(request.data)
+            logger.info(datetime.today)
+            try:
+                save_user = User.objects.get(customers__mobile_number=serializer.data['username'])
+            except:
+                logger.info("ERROR...")
+                try:
+                    logger.info("About to check in users table with email "+serializer.data['username'])
+                    save_user = User.objects.get(email=serializer.data['username'])
+                except Exception as e:
+                    logger.error("Error....."+e)
+                    try:
+                        save_user = User.objects.get(username=serializer.data['username'])
+                    except:
+                        logger.error("ERROR.......")
+
+            save_user.password=make_password(serializer.data['password'])
+
+            save_user.save()
+
+            queryset_data = User.objects.get(id=save_user.id)
+
+            return Response(UserSerializer(queryset_data).data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 

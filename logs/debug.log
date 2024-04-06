@@ -1477,3 +1477,375 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate OTP
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+About to validate OTP
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+About to validate OTP
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate OTP
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+About to validate OTP
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate OTP
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR:::
+User matching query does not exist.
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 64
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+Internal Server Error: /core/api/authenticate/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 36, in create
+    user = User.objects.get(customers__mobile_number=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 429, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+"POST /core/api/authenticate/ HTTP/1.1" 500 98444
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+ERROR...
+ERROR.......
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+Internal Server Error: /core/api/authenticate/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 38, in create
+    user = User.objects.get(customers__mobile_number=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 429, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 42, in create
+    logger.info("About to check in users table with email ".serializer.data['username'])
+AttributeError: 'str' object has no attribute 'serializer'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 45, in create
+    logger.error("Error.....".e)
+AttributeError: 'str' object has no attribute 'e'
+"POST /core/api/authenticate/ HTTP/1.1" 500 109306
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+Internal Server Error: /core/api/authenticate/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 38, in create
+    user = User.objects.get(customers__mobile_number=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 429, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 43, in create
+    user = User.objects.get(email=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 433, in get
+    raise self.model.MultipleObjectsReturned(
+django.contrib.auth.models.User.MultipleObjectsReturned: get() returned more than one User -- it returned 2!
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 45, in create
+    logger.error("Error....."+e)
+TypeError: can only concatenate str (not "MultipleObjectsReturned") to str
+"POST /core/api/authenticate/ HTTP/1.1" 500 118172
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+Internal Server Error: /core/api/authenticate/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 38, in create
+    user = User.objects.get(customers__mobile_number=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 429, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 43, in create
+    user = User.objects.get(email=serializer.data['username'])
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 433, in get
+    raise self.model.MultipleObjectsReturned(
+django.contrib.auth.models.User.MultipleObjectsReturned: get() returned more than one User -- it returned 2!
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py", line 45, in create
+    logger.error("Error....."+e)
+TypeError: can only concatenate str (not "MultipleObjectsReturned") to str
+"POST /core/api/authenticate/ HTTP/1.1" 500 118172
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/urls.py changed, reloading.
+Watching for file changes with StatReloader
+About to save user 
+{'username': 'bede.abbe@gmail.com', 'password': 'terminal2'}
+<built-in method today of type object at 0x1027b5d38>
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+"POST /core/api/update-customer-password/ HTTP/1.1" 202 854
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+About to save user 
+{'username': 'bede.abbe@gmail.com', 'password': 'terminal2'}
+<built-in method today of type object at 0x104fb9d38>
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+"POST /core/api/update-customer-password/ HTTP/1.1" 202 923
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe@gmail.com
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader

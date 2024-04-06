@@ -34,6 +34,7 @@ from project_h_core.application_properties import get_properties
 
 router = routers.DefaultRouter()
 router.register(r'register-customer', register_views.RegisterCustomerViewSet, basename='register-customer')
+router.register(r'update-customer-password', register_views.UpdateCustomerPasswordViewSet, basename='update-customer-password')
 router.register(r'authenticate', authentication_view.authenticationViewSet, basename='authenticate')
 router.register(r'generate-otp', one_time_pin.GenerateOTPViewSet, basename='generate-otp')
 router.register(r'validate-otp', one_time_pin.validateOTPViewSet, basename='validate-otp')
