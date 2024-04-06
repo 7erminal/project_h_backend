@@ -18,8 +18,9 @@ from project_h_core.serializers import authenticationSerializer
 from project_h_core.serializers import authenticationResponseSerializer
 
 class Resp:
-	def __init__(self, message, status):
+	def __init__(self, message, user, status):
 		self.message=message
+		self.user=user
 		self.status=status
 
 class authenticationViewSet(viewsets.ViewSet):
@@ -32,7 +33,11 @@ class authenticationViewSet(viewsets.ViewSet):
 			message = "USER NOT AUTHENTICATED"
 			status_=1002
 			try:
-				user = User.objects.get(username=serializer.data['username'])
+				user = User.objects.get(customers__mobile_number=serializer.data['username'])
+				if user is None:
+					user = User.objects.get(email=serializer.data['username'])
+				if user is None:
+					user = User.objects.get(username=serializer.data['username'])
 				logger.info("User details are ")
 				logger.info(user)
 				checkPasswordResp = user.check_password(serializer.data['password'])
@@ -41,10 +46,12 @@ class authenticationViewSet(viewsets.ViewSet):
 				if checkPasswordResp is True:
 					message = "USER AUTHENTICATED"
 					status_=2000
+				else:
+					user=User()
 			except:
 				user = None
 			# resp = [("status", status), ("message", message)]
-			resp = Resp(message=message, status=status_)
+			resp = Resp(message=message, status=status_, user=user)
 			logger.info("About to send response")
 
 			return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)

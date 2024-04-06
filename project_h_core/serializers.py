@@ -110,6 +110,7 @@ class authenticationSerializer(serializers.Serializer):
 class authenticationResponseSerializer(serializers.Serializer):
     message = serializers.CharField(max_length=255)
     status = serializers.CharField(max_length=255)
+    user = UserSerializer()
 
 class ProfilePictureSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
