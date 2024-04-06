@@ -1849,3 +1849,8 @@ About to send response
 "POST /core/api/authenticate/ HTTP/1.1" 202 979
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader

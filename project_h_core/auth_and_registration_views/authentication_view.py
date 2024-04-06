@@ -42,11 +42,14 @@ class authenticationViewSet(viewsets.ViewSet):
 					logger.info("About to check in users table with email "+serializer.data['username'])
 					user = User.objects.get(email=serializer.data['username'])
 				except Exception as e:
-					logger.error("Error....."+e)
+					logger.error("Error.....")
+					logger.error(e)
 					try:
+						logger.info("About to go check with username which should surely be there")
 						user = User.objects.get(username=serializer.data['username'])
-					except:
+					except Exception as ex:
 						logger.error("ERROR.......")
+						logger.error(ex)
 			logger.info("User is ")
 			logger.info(user)
 			# if user is None:
