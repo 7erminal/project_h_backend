@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate
 import logging
 logger = logging.getLogger("django")
 

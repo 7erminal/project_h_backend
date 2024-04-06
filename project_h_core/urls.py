@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from project_h_core.auth_and_registration_views import register_views
+from project_h_core.auth_and_registration_views import authentication_view
 from project_h_core.views import getUserWithPhoneNumberViewSet
 from project_h_core.auth_and_registration_views import one_time_pin
 from project_h_core.service_views import host_service
@@ -33,6 +34,7 @@ from project_h_core.application_properties import get_properties
 
 router = routers.DefaultRouter()
 router.register(r'register-customer', register_views.RegisterCustomerViewSet, basename='register-customer')
+router.register(r'authenticate', authentication_view.authenticationViewSet, basename='authenticate')
 router.register(r'generate-otp', one_time_pin.GenerateOTPViewSet, basename='generate-otp')
 router.register(r'validate-otp', one_time_pin.validateOTPViewSet, basename='validate-otp')
 router.register(r'host-service', host_service.HostServiceViewSet, basename='host-service')

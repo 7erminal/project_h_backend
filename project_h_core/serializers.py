@@ -54,7 +54,7 @@ class RegisterCustomerSerializer(serializers.Serializer):
     mobile_number = serializers.CharField(max_length=20, allow_null=True, required=False)
     email = serializers.CharField(max_length=50, allow_null=True, required=False)
     address = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
-    # password = serializers.CharField(max_length=100)
+    password = serializers.CharField(max_length=100)
     picture = serializers.ImageField(max_length=255, required=False)
     id_type = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     id_number = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
@@ -102,6 +102,14 @@ class OTPCheckSerializer(serializers.ModelSerializer):
     class Meta:
         model = One_time_pin
         fields = '__all__'
+
+class authenticationSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=255, required=True)
+
+class authenticationResponseSerializer(serializers.Serializer):
+    message = serializers.CharField(max_length=255)
+    status = serializers.CharField(max_length=255)
 
 class ProfilePictureSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)

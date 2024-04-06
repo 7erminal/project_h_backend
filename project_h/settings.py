@@ -87,7 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project_h.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -98,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project_h',
         # 'USER': 'root',
-        # 'PASSWORD': 'T34m1na12123',
+        # 'PASSWORD': 'password',
         'USER': 'root',
         'PASSWORD': 'commander&Chief87',
         # 'USER': 'root',
@@ -154,6 +153,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

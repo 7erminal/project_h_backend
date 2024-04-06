@@ -30,9 +30,11 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
         if serializer.is_valid(raise_exception=True):
             logger.info("About to save user ")
             logger.info(request.data)
-            logger.info(serializer.data['dob'])
+            # logger.info(serializer.data['dob'])
             logger.info(datetime.today)
             logger.info("image is ")
+
+            password = serializer.data['password']
 
             save_user = User(
                 first_name=serializer.data['first_name'],
@@ -43,10 +45,13 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
                 is_superuser=0,
                 is_active=1,
                 date_joined=datetime.today().strftime('%Y-%m-%d'),
-                last_login=datetime.today().strftime('%Y-%m-%d')
+                last_login=datetime.today().strftime('%Y-%m-%d'),
+                password=make_password(password)
             )
 
             save_user.save()
+
+            # save_user.set_password(password)
 
             customer_number = datetime.today().strftime('%Y%m%d')+str(save_user.id)
 
