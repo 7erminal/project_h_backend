@@ -51,7 +51,7 @@ class authenticationViewSet(viewsets.ViewSet):
 						logger.error("ERROR.......")
 						logger.error(ex)
 			logger.info("User is ")
-			logger.info(user)
+			logger.info(user.password)
 			# if user is None:
 			# 	user = User.objects.get(email=serializer.data['username'])
 			# if user is None:
@@ -65,7 +65,13 @@ class authenticationViewSet(viewsets.ViewSet):
 				message = "USER AUTHENTICATED"
 				status_=2000
 			else:
-				user=User()
+				if user is None:
+					user=User()
+				else:
+					if user.password is None or user.password == "":
+						logger.info("Password is blank ")
+						message = "USER EXISTS BUT AUTHENTICATION FAILED"
+						status_ = 2002
 			# except Exception as e:
 			# 	logger.info("ERROR:::")
 			# 	logger.info(e)

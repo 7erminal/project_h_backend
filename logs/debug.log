@@ -1854,3 +1854,140 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbes
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......
+User matching query does not exist.
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbes
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......
+User matching query does not exist.
+User is 
+
+User details are 
+
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 309
+About to validate user credentials
+Getting user details
+ERROR...
+About to check in users table with email bede.abbe
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 983
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+User is 
+jake.banky
+User details are 
+jake.banky
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 1000
+About to validate user credentials
+Getting user details
+User is 
+bede.abbe
+User details are 
+bede.abbe
+Check password response is 
+True
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 979
+About to validate user credentials
+Getting user details
+User is 
+jake.banky
+User details are 
+jake.banky
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 1000
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+User is 
+pbkdf2_sha256$216000$ZfIiBFo1Olsu$/tY7yN1nEp7RCnYUbD73kEfRt1y2YQAjPCIZCDejvB4=
+User details are 
+jake.banky
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 1000
+About to validate user credentials
+Getting user details
+User is 
+
+User details are 
+jake.banky
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 922
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+User is 
+
+User details are 
+jake.banky
+Check password response is 
+False
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 922
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+About to validate user credentials
+Getting user details
+User is 
+
+User details are 
+jake.banky
+Check password response is 
+False
+Password is blank 
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 922
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
