@@ -1991,3 +1991,95 @@ About to send response
 "POST /core/api/authenticate/ HTTP/1.1" 202 922
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+About to save user 
+{'username': 'bede.abbe@gmail.com', 'password': 'terminal2'}
+<built-in method today of type object at 0x104cc5d38>
+ERROR...
+About to check in users table with email 
+Internal Server Error: /core/api/update-customer-password/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: type object 'Resp' has no attribute 'message'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py", line 244, in create
+    return Response(authenticationResponseSerializer(Resp).data,status.HTTP_202_ACCEPTED)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 548, in data
+    ret = super().data
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 246, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 502, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `message` on serializer `authenticationResponseSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `type` instance.
+Original exception text was: type object 'Resp' has no attribute 'message'.
+"POST /core/api/update-customer-password/ HTTP/1.1" 500 129524
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+About to save user 
+{'username': 'bede.abbe@gmail.com', 'password': 'terminal2'}
+<built-in method today of type object at 0x104459d38>
+ERROR...
+About to check in users table with email 
+Internal Server Error: /core/api/update-customer-password/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py", line 244, in create
+    return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)
+AttributeError: 'str' object has no attribute 'HTTP_202_ACCEPTED'
+"POST /core/api/update-customer-password/ HTTP/1.1" 500 90535
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/register_views.py changed, reloading.
+Watching for file changes with StatReloader
+About to save user 
+{'username': 'bede.abbe@gmail.com', 'password': 'terminal2'}
+<built-in method today of type object at 0x103335d38>
+ERROR...
+About to check in users table with email 
+"POST /core/api/update-customer-password/ HTTP/1.1" 202 990
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader

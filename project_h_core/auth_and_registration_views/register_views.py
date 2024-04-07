@@ -22,6 +22,7 @@ from project_h_core.serializers import HostSerializer
 from project_h_core.serializers import HostDetailsSerializer
 from project_h_core.serializers import SetLanguageSerializer
 from project_h_core.serializers import authenticationSerializer
+from project_h_core.serializers import authenticationResponseSerializer
 
 class Resp:
 	def __init__(self, message, user, status):
@@ -207,27 +208,40 @@ class UpdateCustomerPasswordViewSet(viewsets.ViewSet):
             logger.info("About to save user ")
             logger.info(request.data)
             logger.info(datetime.today)
+            message="UNABLE TO CHANGE PASSWORD"
+            status_="1001"
             try:
                 save_user = User.objects.get(customers__mobile_number=serializer.data['username'])
+                save_user.password=make_password(serializer.data['password'])
+                save_user.save()
+                status_="2000"
+                message="PASSWORD CHANGED SUCCESSFULLY"
             except:
                 logger.info("ERROR...")
                 try:
-                    logger.info("About to check in users table with email "+serializer.data['username'])
+                    logger.info("About to check in users table with email ")
                     save_user = User.objects.get(email=serializer.data['username'])
+                    save_user.password=make_password(serializer.data['password'])
+                    save_user.save()
+                    status_="2000"
+                    message="PASSWORD CHANGED SUCCESSFULLY"
                 except Exception as e:
-                    logger.error("Error....."+e)
+                    logger.error("Error.....")
                     try:
                         save_user = User.objects.get(username=serializer.data['username'])
+                        save_user.password=make_password(serializer.data['password'])
+                        save_user.save()
+                        status_="2000"
+                        message="PASSWORD CHANGED SUCCESSFULLY"
                     except:
                         logger.error("ERROR.......")
+                        message="USER NOT FOUND"
+                        status_="1007"
+                        save_user=User()
 
-            save_user.password=make_password(serializer.data['password'])
+            resp = Resp(message=message, user=save_user, status=status_)
 
-            save_user.save()
-
-            queryset_data = User.objects.get(id=save_user.id)
-
-            return Response(UserSerializer(queryset_data).data,status.HTTP_202_ACCEPTED)
+            return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
