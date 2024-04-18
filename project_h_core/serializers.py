@@ -54,7 +54,7 @@ class RegisterCustomerSerializer(serializers.Serializer):
     mobile_number = serializers.CharField(max_length=20, allow_null=True, required=False)
     email = serializers.CharField(max_length=50, allow_null=True, required=False)
     address = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
-    password = serializers.CharField(max_length=100)
+    password = serializers.CharField(max_length=100, required=False)
     picture = serializers.ImageField(max_length=255, required=False)
     id_type = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     id_number = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)

@@ -36,8 +36,9 @@ class authenticationViewSet(viewsets.ViewSet):
 			logger.info("Getting user details")
 			try:
 				user = User.objects.get(customers__mobile_number=serializer.data['username'])
-			except:
+			except Exception as e:
 				logger.info("ERROR...")
+				logger.error(e)
 				try:
 					logger.info("About to check in users table with email "+serializer.data['username'])
 					user = User.objects.get(email=serializer.data['username'])
@@ -65,7 +66,8 @@ class authenticationViewSet(viewsets.ViewSet):
 				message = "USER AUTHENTICATED"
 				status_=2000
 			else:
-				if user is None:
+				if not user:
+					logger.info("User was not found")
 					user=User()
 				else:
 					if user.password is None or user.password == "":

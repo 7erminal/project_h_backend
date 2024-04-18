@@ -98,10 +98,10 @@ DATABASES = {
         'NAME': 'project_h',
         # 'USER': 'root',
         # 'PASSWORD': 'password',
-        'USER': 'root',
-        'PASSWORD': 'commander&Chief87',
         # 'USER': 'root',
-        # 'PASSWORD': 't3nn1sCL0B@12',
+        # 'PASSWORD': 'commander&Chief87',
+        'USER': 'project_h',
+        'PASSWORD': 'Yy@99#UEQpapiccworD@@wr',
         #'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
         'PORT': '3306',
 

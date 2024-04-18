@@ -2089,3 +2089,254 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /core/essentials/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'project_h.project_h_core_currencies' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/drf_multiple_model/views.py", line 16, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/drf_multiple_model/mixins.py", line 112, in list
+    data = query_data['serializer_class'](queryset, many=True, context=context).data
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 745, in data
+    ret = super().data
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 246, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/rest_framework/serializers.py", line 663, in to_representation
+    return [
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 287, in __iter__
+    self._fetch_all()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1308, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 53, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1156, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'project_h.project_h_core_currencies' doesn't exist")
+"GET /core/essentials/ HTTP/1.1" 500 242044
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2155
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2206
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 2194
+"GET /static/admin/css/base.css HTTP/1.1" 200 16307
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2138
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 1360
+"GET /static/admin/css/login.css HTTP/1.1" 200 1185
+"GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18344
+"GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+"GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 2365
+"GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 2365
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 2365
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 9443
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/project_h_core/applicationproperties/ HTTP/1.1" 200 34454
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6302
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 5418
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6078
+"GET /static/admin/js/actions.js HTTP/1.1" 200 6783
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 8632
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 287630
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /admin/project_h_core/applicationproperties/132/change/ HTTP/1.1" 200 12473
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 492
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8423
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 10592
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/132/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12421
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/ HTTP/1.1" 200 34745
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12102
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/auth_and_registration_views/authentication_view.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
