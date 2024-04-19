@@ -4,10 +4,10 @@ from rest_framework import viewsets
 from datetime import date, datetime, timedelta
 from rest_framework.response import Response
 from rest_framework import status
-from drf_multiple_model.views import ObjectMultipleModelAPIView
+# from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
-from django.contrib.auth.hashers import make_password
-from rest_framework.parsers import MultiPartParser, FormParser
+# from django.contrib.auth.hashers import make_password
+# from rest_framework.parsers import MultiPartParser, FormParser
 
 from project_h_core.models import Hosted_service
 from project_h_core.models import Service_images
@@ -15,6 +15,7 @@ from project_h_core.models import Services
 from project_h_core.models import Service_reviews
 from project_h_core.models import HostDetails
 from project_h_core.models import Customers
+from project_h_core.models import Currencies
 
 from project_h_core.serializers import HostServiceSerializer
 from project_h_core.serializers import HostedServicesSerializer
@@ -127,6 +128,7 @@ class HostServiceViewSet(viewsets.ViewSet):
 
             user_ = User.objects.get(id=serializer.data['id'])
             service_ = Services.objects.get(service_id=serializer.data['parent_service'])
+            currency_ = Currencies.objects.get(currency_id=serializer.data['currency'])
 
             logger.info(serializer.data['process'])
 
@@ -172,6 +174,7 @@ class HostServiceViewSet(viewsets.ViewSet):
                 user=user_,
                 active=1,
                 part_payment_allowed=0,
+                charge_currency = currency_
             )
 
             _hosted_service.save()
