@@ -29,8 +29,6 @@ class authenticationViewSet(viewsets.ViewSet):
 
 		if serializer.is_valid(raise_exception=True):
 			logger.info("About to validate user credentials")
-			user=User()
-
 			message = "USER NOT AUTHENTICATED"
 			status_=1002
 			logger.info("Getting user details")
@@ -51,34 +49,35 @@ class authenticationViewSet(viewsets.ViewSet):
 					except Exception as ex:
 						logger.error("ERROR.......")
 						logger.error(ex)
-			logger.info("User is ")
-			logger.info(user.password)
+			# logger.info("User is ")
+			# logger.info(user.password)
 			# if user is None:
 			# 	user = User.objects.get(email=serializer.data['username'])
 			# if user is None:
 			# 	user = User.objects.get(username=serializer.data['username'])
-			logger.info("User details are ")
-			logger.info(user)
-			checkPasswordResp = user.check_password(serializer.data['password'])
-			logger.info("Check password response is ")
-			logger.info(checkPasswordResp)
-			if checkPasswordResp is True:
-				message = "USER AUTHENTICATED"
-				status_=2000
+			# logger.info("User details are ")
+			# logger.info(user)
+			if not user:
+				logger.info("User was not found")
+				message = "USER NOT FOUND"
+				user=User()
 			else:
-				if not user:
-					logger.info("User was not found")
-					user=User()
+				checkPasswordResp = user.check_password(serializer.data['password'])
+				logger.info("Check password response is ")
+				logger.info(checkPasswordResp)
+				if checkPasswordResp is True:
+					message = "USER AUTHENTICATED"
+					status_=2000
 				else:
 					if user.password is None or user.password == "":
 						logger.info("Password is blank ")
 						message = "USER EXISTS BUT AUTHENTICATION FAILED"
 						status_ = 2002
-			# except Exception as e:
-			# 	logger.info("ERROR:::")
-			# 	logger.info(e)
-			# 	user = None
-			# resp = [("status", status), ("message", message)]
+				# except Exception as e:
+				# 	logger.info("ERROR:::")
+				# 	logger.info(e)
+				# 	user = None
+				# resp = [("status", status), ("message", message)]
 			resp = Resp(message=message, status=status_, user=user)
 			logger.info("About to send response")
 
