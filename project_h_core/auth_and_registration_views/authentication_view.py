@@ -34,8 +34,9 @@ class authenticationViewSet(viewsets.ViewSet):
 			logger.info("Getting user details")
 			user = User.objects.get(customers__mobile_number=serializer.data['username'])
 			logger.info("ERROR...")
-			logger.error(e)
+			# logger.error(e)
 			if not user:
+				logger.info("User not found so going to check using email or username...")
 				try:
 					message = "USER NOT FOUND"
 					logger.info("About to check in users table with email "+serializer.data['username'])
