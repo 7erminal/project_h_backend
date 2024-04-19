@@ -110,7 +110,7 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             logger.info("About to save user ")
             logger.info(request.data)
             logger.info(serializer.data['id_number'])
-            logger.info(datetime.today)
+            logger.info(datetime.today().strftime('%Y-%m-%d'))
             logger.info("image is ")
 
             save_user = User.objects.get(id=serializer.data['id']) 
