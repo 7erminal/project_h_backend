@@ -33,6 +33,8 @@ class authenticationViewSet(viewsets.ViewSet):
 			status_=1002
 			logger.info("Getting user details")
 
+			userfound = True
+
 			user = User()
 			
 			# logger.error(e)
@@ -56,6 +58,7 @@ class authenticationViewSet(viewsets.ViewSet):
 					except Exception as ex:
 						logger.error("ERROR.......User not found anythere")
 						logger.error(ex)
+						userfound = False
 			
 			# logger.info("User is ")
 			# logger.info(user.password)
@@ -65,7 +68,7 @@ class authenticationViewSet(viewsets.ViewSet):
 			# 	user = User.objects.get(username=serializer.data['username'])
 			# logger.info("User details are ")
 			# logger.info(user)
-			if user == User():
+			if userfound == False:
 				logger.info("User was not found")
 				user=User()
 			else:
