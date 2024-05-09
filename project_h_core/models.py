@@ -78,6 +78,7 @@ class Services(models.Model):
 	service_category_description_SPANISH = models.CharField(max_length=255, null=True, blank=True)
 	service_category_description_PORTUGAL = models.CharField(max_length=255, null=True, blank=True)
 	service_icon = models.CharField(max_length=80, null=True, blank=True)
+	service_image = models.CharField(max_length=255, null=True, blank=True)
 	has_form = models.BooleanField(default=0)
 	active = models.SmallIntegerField(null=True, blank=True)
 	display_type = models.CharField(max_length=50, null=True, blank=True)

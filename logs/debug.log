@@ -2363,3 +2363,395 @@ Watching for file changes with StatReloader
 "GET /admin/jsi18n/ HTTP/1.1" 200 3187
 /Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2155
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 2276
+"GET /static/admin/css/base.css HTTP/1.1" 200 16307
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2138
+"GET /static/admin/css/login.css HTTP/1.1" 200 1185
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 1360
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18344
+"GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+"GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+"GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 2194
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 2355
+"GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 10480
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/project_h_core/applicationproperties/160/change/ HTTP/1.1" 200 12470
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8423
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 5418
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 287630
+"GET /static/admin/js/actions.js HTTP/1.1" 200 6783
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6078
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 8632
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 492
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 10592
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/applicationproperties/ HTTP/1.1" 200 34553
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6302
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12102
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/applicationproperties/add/ HTTP/1.1" 200 12419
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+Watching for file changes with StatReloader
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/10/change/ HTTP/1.1" 200 16680
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+Internal Server Error: /admin/project_h_core/servicecategories/
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'project_h.project_h_core_servicecategories' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 614, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 233, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1693, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 735, in get_changelist_instance
+    return ChangeList(
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/views/main.py", line 100, in __init__
+    self.get_results(request)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/contrib/admin/views/main.py", line 235, in get_results
+    result_count = paginator.count
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/core/paginator.py", line 94, in count
+    return c()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/query.py", line 411, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 515, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 500, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1156, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/bedeabbe/Desktop/projects/python/venv/lib/python3.9/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'project_h.project_h_core_servicecategories' doesn't exist")
+"GET /admin/project_h_core/servicecategories/ HTTP/1.1" 500 235987
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/9/change/ HTTP/1.1" 200 16612
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/9/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/8/change/ HTTP/1.1" 200 16612
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/8/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16620
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/7/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16654
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/6/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16666
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/6/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16617
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/5/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/4/change/ HTTP/1.1" 200 16616
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/4/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16626
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/3/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16676
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/3/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/2/change/ HTTP/1.1" 200 16643
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/2/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/1/change/ HTTP/1.1" 200 16569
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/1/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/9/change/ HTTP/1.1" 200 16613
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/8/change/ HTTP/1.1" 200 16609
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16618
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16666
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16618
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16666
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/4/change/ HTTP/1.1" 200 16618
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16676
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/2/change/ HTTP/1.1" 200 16632
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/1/change/ HTTP/1.1" 200 16569
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/8/change/ HTTP/1.1" 200 16609
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/10/change/ HTTP/1.1" 200 16680
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/10/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10516
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/9/change/ HTTP/1.1" 200 16613
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/9/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/8/change/ HTTP/1.1" 200 16609
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/8/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16618
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/7/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16645
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/7/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16666
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/6/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/5/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/4/change/ HTTP/1.1" 200 16618
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/4/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16676
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/3/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16713
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10289
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/2/change/ HTTP/1.1" 200 16632
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/2/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/1/change/ HTTP/1.1" 200 16569
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/1/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+Watching for file changes with StatReloader
+"GET /admin/project_h_core/services/10/change/ HTTP/1.1" 200 16709
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/10/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10516
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/9/change/ HTTP/1.1" 200 16642
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/9/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/8/change/ HTTP/1.1" 200 16638
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/8/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/7/change/ HTTP/1.1" 200 16645
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/7/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16697
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/6/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/6/change/ HTTP/1.1" 200 16705
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/6/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16631
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/5/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/5/change/ HTTP/1.1" 200 16639
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/5/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/4/change/ HTTP/1.1" 200 16645
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/4/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/4/change/ HTTP/1.1" 200 16653
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/4/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/3/change/ HTTP/1.1" 200 16713
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/3/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/2/change/ HTTP/1.1" 200 16664
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/2/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"GET /admin/project_h_core/services/1/change/ HTTP/1.1" 200 16592
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+"POST /admin/project_h_core/services/1/change/ HTTP/1.1" 302 0
+"GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3187
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
