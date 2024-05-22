@@ -175,7 +175,7 @@ class HostedServicesSerializer(serializers.ModelSerializer):
 
 class AddReviewSerializer(serializers.Serializer):
     hosted_service_id = serializers.CharField(max_length=10, required=True)
-    review = serializers.CharField(max_length=255, required=True)
+    review = serializers.CharField(max_length=1255, required=True)
     user_id = serializers.CharField(max_length=5, required=True)
 
 class PaymentMethodsSerializer(serializers.ModelSerializer):
