@@ -201,7 +201,6 @@ class HostServiceViewSet(viewsets.ViewSet):
                         hosted_service=_hosted_service,
                         image=request.FILES[picture]
                     )
-           
 
                 images_.save()
 

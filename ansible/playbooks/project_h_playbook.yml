@@ -1,0 +1,16 @@
+- name: Deploy application
+  hosts: webservers
+  vars_files:
+    - vault.yml
+  become: yes
+
+  tasks:
+    - name: Stashing changes
+      shell: |
+        cd /var/www/html/backend && git stash
+    - name: Pull project
+      git:
+        repo: https://github.com/7erminal/project_h_backend.git
+        dest: /var/www/html/backend
+    - name: Restart gunicorn
+      command: systemctl restart gunicorn.socket

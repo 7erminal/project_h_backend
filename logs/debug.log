@@ -2852,3 +2852,368 @@ Watching for file changes with StatReloader
 "GET /admin/project_h_core/services/ HTTP/1.1" 200 10514
 "GET /admin/jsi18n/ HTTP/1.1" 200 3187
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h_core/service_views/ImageUploader.py changed, reloading.
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Bad Request: /core/hosted-services/
+Bad Request: /core/hosted-services/
+Bad Request: /core/essentials/
+"GET /core/hosted-services/ HTTP/1.1" 400 66769
+"GET /core/hosted-services/ HTTP/1.1" 400 66769
+"GET /core/essentials/ HTTP/1.1" 400 66714
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Bad Request: /core/hosted-services/
+"GET /core/hosted-services/ HTTP/1.1" 400 66769
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Bad Request: /core/hosted-services/
+"GET /core/hosted-services/ HTTP/1.1" 400 66769
+Invalid HTTP_HOST header: 'fair-toys-occur.loca.lt'. You may need to add 'fair-toys-occur.loca.lt' to ALLOWED_HOSTS.
+Bad Request: /core/essentials/
+"GET /core/essentials/ HTTP/1.1" 400 66714
+/Users/bedeabbe/Desktop/projects/python/project_h_backend/project_h/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /core/hosted-services/ HTTP/1.1" 202 45028
+"GET /core/essentials/ HTTP/1.1" 200 102574
+"GET /core/hosted-services/ HTTP/1.1" 202 45028
+"GET /media/service_images/new.jpg HTTP/1.1" 200 73053
+Not Found: /media/images/20231203_132410.jpg
+Not Found: /media/images/20231112_103148.jpg
+Not Found: /media/images/20231112_105142.jpg
+Not Found: /media/images/20231112_103213.jpg
+Not Found: /media/images/20231016_072504.jpg
+Not Found: /media/images/1000009621.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20230723_163133.jpg
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000078.jpg
+Not Found: /media/images/1000007913.jpg
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_103148.jpg
+Not Found: /media/images/1000000078.jpg
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231203_132410.jpg
+Not Found: /media/images/1000009621.jpg
+Not Found: /media/images/20231112_103213.jpg
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231016_072504.jpg
+Not Found: /media/images/1000007913.jpg
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20230723_163133.jpg
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000161.png
+Not Found: /media/images/20231112_105142.jpg
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+About to validate user credentials
+Getting user details
+checking user with mobile number
+ERROR...
+User not found going to check in email...
+User matching query does not exist.
+About to check in users table with email 0557881324
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......User not found anythere
+User matching query does not exist.
+User was not found
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 301
+"GET /core/essentials/ HTTP/1.1" 200 102574
+Not Found: /media/images/1000007913.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_105142.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000078.jpg
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+Not Found: /media/images/20231112_103213.jpg
+Not Found: /media/images/1000000161.png
+Not Found: /media/images/1000009621.jpg
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_103148.jpg
+Not Found: /media/images/20231016_072504.jpg
+Not Found: /media/images/20230723_163133.jpg
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231203_132410.jpg
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+About to validate user credentials
+Getting user details
+checking user with mobile number
+ERROR...
+User not found going to check in email...
+User matching query does not exist.
+About to check in users table with email 0557881325
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......User not found anythere
+User matching query does not exist.
+User was not found
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 301
+"GET /core/essentials/ HTTP/1.1" 200 102574
+About to validate user credentials
+Getting user details
+checking user with mobile number
+ERROR...
+User not found going to check in email...
+User matching query does not exist.
+About to check in users table with email 0557881327
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......User not found anythere
+User matching query does not exist.
+User was not found
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 301
+"GET /core/essentials/ HTTP/1.1" 200 102574
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000007913.jpg
+Not Found: /media/images/1000003345.jpg
+Not Found: /media/images/20231112_105142.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231203_132410.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_103213.jpg
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+Not Found: /media/images/20231016_072504.jpg
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_103213.jpg
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_103148.jpg
+Not Found: /media/images/1000009621.jpg
+Not Found: /media/images/1000007913.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+Not Found: /media/images/20230723_163133.jpg
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000078.jpg
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000007913.jpg
+Not Found: /media/images/1000009621.jpg
+Not Found: /media/images/20231112_103148.jpg
+Not Found: /media/images/20231112_103213.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231016_072504.jpg
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231203_132410.jpg
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_105142.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+About to validate user credentials
+Getting user details
+checking user with mobile number
+ERROR...
+User not found going to check in email...
+User matching query does not exist.
+About to check in users table with email 0557881327
+Error.....
+User matching query does not exist.
+About to go check with username which should surely be there
+ERROR.......User not found anythere
+User matching query does not exist.
+User was not found
+About to send response
+"POST /core/api/authenticate/ HTTP/1.1" 202 301
+"GET /core/essentials/ HTTP/1.1" 200 102574
+Not Found: /media/images/1000007913.jpg
+Not Found: /media/images/20230716_193058.jpg
+Not Found: /media/images/1000003345.jpg
+Not Found: /media/images/20230723_163133.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_103213.jpg
+Not Found: /media/images/20231203_132410.jpg
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231016_072504.jpg
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000078.jpg
+Not Found: /media/images/1000009621.jpg
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+"GET / HTTP/1.1" 404 2164
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_105142.jpg
+Not Found: /media/images/20231112_103148.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+About to save user 
+{'first_name': 'Justin', 'last_name': 'Sky', 'dob': '2003-09-10', 'gender': 'm', 'mobile_number': '0557881327', 'email': 'Justinsky@gmail.com', 'password': 'terminal'}
+<built-in method today of type object at 0x100e2dd38>
+image is 
+About to save customer details 
+2024052962
+Picture not there 
+Customer saved 
+"POST /core/api/register-customer/ HTTP/1.1" 202 927
+"GET /core/hosted-services/ HTTP/1.1" 202 45028
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+Not Found: /media/images/20231203_132410.jpg
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_105142.jpg
+Not Found: /media/images/20231016_072504.jpg
+Not Found: /media/images/20231112_103213.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20230723_163133.jpg
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000007913.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000009621.jpg
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20231112_103148.jpg
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000078.jpg
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+parameters received is 
+SetLanguageSerializer(data=<QueryDict: {'userid': ['62'], 'languageid': ['1']}>):
+    userid = CharField(max_length=10, required=False)
+    languageid = CharField(max_length=10, required=False)
+"GET /core/update-language?userid=62&languageid=1 HTTP/1.1" 202 924
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+"GET /core/get-host-details?id=62 HTTP/1.1" 301 0
+request received is 
+<QueryDict: {'id': ['62']}>
+"GET /core/get-host-details/?id=62 HTTP/1.1" 202 2
+request received is 
+{'id': '62', 'host_name': "Justin's Altimate Sales", 'location_cordinates': 'Gabon', 'office_address': 'box 52 street', 'service_coverage_zone': 'world-wide ', 'official_certifications': 'certified salesman', 'number_of_years_practice_speciality': '8', 'number_of_years_experience': '3', 'referrals': '', 'specializations': 'Sales, Tools', 'languages_spoken': 'English'}
+SELECT `project_h_core_hostdetails`.`host_details_id`, `project_h_core_hostdetails`.`host_name`, `project_h_core_hostdetails`.`customer_id`, `project_h_core_hostdetails`.`location_cordinates`, `project_h_core_hostdetails`.`office_address`, `project_h_core_hostdetails`.`service_coverage_zone`, `project_h_core_hostdetails`.`official_certifications`, `project_h_core_hostdetails`.`number_of_years_practice_speciality`, `project_h_core_hostdetails`.`number_of_years_experience`, `project_h_core_hostdetails`.`referrals`, `project_h_core_hostdetails`.`specializations`, `project_h_core_hostdetails`.`audio_video`, `project_h_core_hostdetails`.`languages_spoken`, `project_h_core_hostdetails`.`created_by`, `project_h_core_hostdetails`.`updated_by`, `project_h_core_hostdetails`.`created_at`, `project_h_core_hostdetails`.`updated_at` FROM `project_h_core_hostdetails` WHERE `project_h_core_hostdetails`.`customer_id` = 48
+"POST /core/api/update-host-details/ HTTP/1.1" 202 516
+About to save user 
+{'id': '62', 'first_name': 'Justin', 'last_name': 'Sky', 'other_names': '', 'email': 'Justinsky@gmail.com', 'address': 'box 7000', 'id_type': '1', 'id_number': '2315673', 'nationality': '1', 'location': 'Gabon', 'profession': 'Salesman'}
+2315673
+2024-05-29
+image is 
+ID Number is 
+2315673
+1
+SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, 
+                `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, 
+                `auth_user`.`date_joined`, `project_h_core_customers`.`customer_id`, `project_h_core_customers`.`user_id`, 
+                `project_h_core_customers`.`customer_number`, `project_h_core_customers`.`dob`, `project_h_core_customers`.`active`, 
+                `project_h_core_customers`.`is_verified`, `project_h_core_customers`.`ID_type_id`, `project_h_core_customers`.`ID_number`, 
+                `project_h_core_customers`.`language_id`, `project_h_core_customers`.`profession`, `project_h_core_customers`.`mobile_number`, 
+                `project_h_core_customers`.`gender`, `project_h_core_customers`.`picture`, `project_h_core_customers`.`other_names`, 
+                `project_h_core_customers`.`address`, `project_h_core_customers`.`location`, `project_h_core_customers`.`nationality`, 
+                `project_h_core_customers`.`dateTermsAndConditions`, `project_h_core_customers`.`datePrivacyPolicy`, `project_h_core_customers`.`is_host`, 
+                `project_h_core_customers`.`created_by`, `project_h_core_customers`.`updated_by`, `project_h_core_customers`.`created_at`, 
+                `project_h_core_customers`.`updated_at` FROM `auth_user` INNER JOIN `project_h_core_customers` 
+                ON (`auth_user`.`id` = `project_h_core_customers`.`user_id`) WHERE `project_h_core_customers`.`user_id` = 62
+"POST /core/api/update-customer-details/ HTTP/1.1" 202 1451
+About to save service 
+<QueryDict: {'id': ['62'], 'parent_service': ['4'], 'service_name': ["Justin's Altimate Sales"], 'description': ['desired painting for intellects'], 'location': ['Accra'], 'process': ['Oil paint,Canvas'], 'duration': ['1 DAYS'], 'price': ['1200'], 'currency': ['2'], 'pictures[0]': [<InMemoryUploadedFile: 1000000253.jpg (image/jpeg)>], 'pictures[1]': [<InMemoryUploadedFile: 1000000252.jpg (image/jpeg)>], 'pictures[2]': [<InMemoryUploadedFile: 1000000251.jpg (image/jpeg)>]}>
+4
+{'id': '62', 'parent_service': '4', 'service_name': "Justin's Altimate Sales", 'description': 'desired painting for intellects', 'location': 'Accra', 'process': 'Oil paint,Canvas', 'duration': '1 DAYS', 'price': '1200', 'currency': '2', 'pictures': [None, None, None], 'service_sub': None}
+Oil paint,Canvas
+service hosted. About to upload pictures
+[]
+Each image ...
+pictures[0]
+Each image ...
+pictures[1]
+Each image ...
+pictures[2]
+Hosted service added is 
+<QuerySet [{'hosted_service_id': 14, 'service_id': 4, 'service_name': "Justin's Altimate Sales", 'service_sub': None, 'service_sub_selected_fields': None, 'description': 'desired painting for intellects', 'location': 'Accra', 'location_cordinates': None, 'process': 'Oil paint,Canvas', 'user_id': 62, 'active': 1, 'expected_duration': '1 DAYS', 'price': 1200.0, 'charge_currency_id': 2, 'part_payment_allowed': 0, 'created_by': None, 'updated_by': None, 'created_at': datetime.datetime(2024, 5, 29, 16, 39, 44, 641667, tzinfo=<UTC>), 'updated_at': datetime.datetime(2024, 5, 29, 16, 39, 44, 641691, tzinfo=<UTC>)}]>
+"POST /core/api/host-service/ HTTP/1.1" 202 2452
+"GET /media/images/1000000251.jpg HTTP/1.1" 200 144967
+"GET /media/images/1000000252.jpg HTTP/1.1" 200 243265
+"GET /media/images/1000000253.jpg HTTP/1.1" 200 461655
+Not Found: /
+"GET / HTTP/1.1" 404 2164
+"GET /core/hosted-services/ HTTP/1.1" 202 47479
+Not Found: /media/images/20231203_132410.jpg
+"GET /media/images/20231203_132410.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_105142.jpg
+Not Found: /media/images/20231112_103213.jpg
+"GET /media/images/20231112_105142.jpg HTTP/1.1" 404 1866
+"GET /media/images/20231112_103213.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231016_072504.jpg
+"GET /media/images/20231016_072504.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/20231112_103148.jpg
+"GET /media/images/20231112_103148.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000009621.jpg
+"GET /media/images/1000009621.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/20230723_163133.jpg
+"GET /media/images/20230723_163133.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000000161.png
+"GET /media/images/1000000161.png HTTP/1.1" 404 1851
+Not Found: /media/images/20230716_193058.jpg
+"GET /media/images/20230716_193058.jpg HTTP/1.1" 404 1866
+Not Found: /media/images/1000007913.jpg
+"GET /media/images/1000007913.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000000078.jpg
+"GET /media/images/1000000078.jpg HTTP/1.1" 404 1851
+Not Found: /media/images/1000003345.jpg
+"GET /media/images/1000003345.jpg HTTP/1.1" 404 1851

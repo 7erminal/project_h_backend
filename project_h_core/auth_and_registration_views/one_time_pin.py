@@ -27,7 +27,7 @@ class GenerateOTPViewSet(viewsets.ViewSet):
 			logger.info("Generating OTP ... ")
 
 			# otp_generated = random.randint(1111,9999)
-			otp_generated = 1111;
+			otp_generated = 1111
 
 			logger.info(otp_generated)
 
