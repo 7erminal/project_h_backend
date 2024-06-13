@@ -28,4 +28,4 @@ jobs:
       # Runs ansible script
       - name: Run ansible script
         run: |
-          ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/project_h_playbook.yml --ask-vault-pass
+          ansible-playbook -i ./ansible/inventory/hosts.ini ./ansible/playbooks/project_h_playbook.yml --ask-vault-pass
