@@ -201,7 +201,6 @@ class HostServiceViewSet(viewsets.ViewSet):
                         hosted_service=_hosted_service,
                         image=request.FILES[picture]
                     )
-
                 images_.save()
 
             hosted_service = Hosted_service.objects.filter(hosted_service_id=_hosted_service.hosted_service_id).select_related()
