@@ -1,7 +1,7 @@
 - name: Deploy application
   hosts: webservers
   vars_files:
-    - vault.yml
+    - ../vault.yml
   become: yes
 
   tasks:
