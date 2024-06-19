@@ -12,6 +12,7 @@ logger = logging.getLogger("django")
 
 from project_h_core.models import Customers
 from project_h_core.models import HostDetails
+from project_h_core.models import HostReferrals
 from project_h_core.models import IDTypes
 
 from project_h_core.serializers import RegisterCustomerSerializer
@@ -23,6 +24,10 @@ from project_h_core.serializers import HostDetailsSerializer
 from project_h_core.serializers import SetLanguageSerializer
 from project_h_core.serializers import authenticationSerializer
 from project_h_core.serializers import authenticationResponseSerializer
+from project_h_core.serializers import HostReferralsSerializer
+from project_h_core.serializers import HostReferralsResponseSerializer
+from project_h_core.serializers import HostReferralResponseSerializer
+from project_h_core.serializers import ReferralsSerializer
 
 class Resp:
 	def __init__(self, message, user, status):
@@ -421,5 +426,55 @@ class updateLanguage(viewsets.ViewSet):
             queryset_data = User.objects.filter(id=serializer.data['userid']).select_related('customers')
 
             return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+        
+class addReferralContact(viewsets.ViewSet):
+    def create(self, request):
+        serializer = HostReferralsSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            logger.info("Valid data received")
+            host_queryset_data = HostDetails.objects.get(host_details_id=int(serializer.data['user']))
+
+            save_host_referrals = HostReferrals(
+                host_details=host_queryset_data,
+                name= serializer.data['referral_name'],
+                contact = serializer.data['referral_contact'],
+                created_by = host_queryset_data.host_details_id,
+                updated_by = host_queryset_data.host_details_id
+            )
+
+            save_host_referrals.save()
+
+            queryset_data = HostReferrals.objects.filter(host_referral_id=save_host_referrals.host_referral_id)
+
+            logger.info("Data returned is ")
+            logger.info(ReferralsSerializer(queryset_data, many=True).data)
+
+            resp = {'response_code': "200", 'response_message': "Referral added successfully", 'referrals': queryset_data[0]}
+
+            return Response(HostReferralResponseSerializer(resp).data, status=status.HTTP_201_CREATED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+        
+    def destroy(self, request):
+        logger.info("Request received is ")
+        # logger.info(request.data)
+
+class GetHostReferrals(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        logger.info("request received is ")
+        logger.info(request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            queryset_data = HostReferrals.objects.filter(host_details=serializer.data['id'])
+            logger.info("Data returned for referrals is ")
+            logger.info(queryset_data.values)
+            logger.info(ReferralsSerializer(queryset_data, many=True).data)
+            resp = {"response_code": "200", "response_message": "Referrals fetched successfully", "referrals": queryset_data}
+            return Response(HostReferralsResponseSerializer(resp).data, status=status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)

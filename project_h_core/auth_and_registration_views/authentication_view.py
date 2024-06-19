@@ -70,6 +70,8 @@ class authenticationViewSet(viewsets.ViewSet):
 			# logger.info(user)
 			if userfound == False:
 				logger.info("User was not found")
+				status_ = 1002
+				message = "USER NOT FOUND"
 				user=User()
 			else:
 				checkPasswordResp = user.check_password(serializer.data['password'])
@@ -83,6 +85,9 @@ class authenticationViewSet(viewsets.ViewSet):
 						logger.info("Password is blank ")
 						message = "USER EXISTS BUT AUTHENTICATION FAILED"
 						status_ = 2002
+					else:
+						message = "AUTHENTICATION FAILED. WRONG CREDENTIALS PROVIDED."
+						status_ = 2003
 				# except Exception as e:
 				# 	logger.info("ERROR:::")
 				# 	logger.info(e)

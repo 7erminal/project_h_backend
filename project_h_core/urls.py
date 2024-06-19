@@ -53,6 +53,7 @@ router.register(r'respond-to-request-notice', request_service.RespondToRequestNo
 router.register(r'get-request-by-request', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
 router.register(r'get-request-conversation', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
 router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo, basename='get-request-notice-conversation')
+router.register(r'host-referral', register_views.addReferralContact, basename='host-referral')
 
 
 urlpatterns = [
@@ -83,6 +84,7 @@ urlpatterns = [
     # path('get-service-categories', get_properties.GetServiceCategories.as_view({'get': 'retrieve'}), name='get-service-categories'),
     path('get-profile-menu', get_properties.GetServiceCategories.as_view({'get': 'retrieve'}), name='get-profile-menu'),
     path('update-language', register_views.updateLanguage.as_view({'get': 'retrieve'}), name='update-language'),
+    path('get-referrals/', register_views.GetHostReferrals.as_view({'get': 'retrieve'}), name='get-referrals'),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

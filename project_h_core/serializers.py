@@ -20,6 +20,7 @@ from project_h_core.models import ProfileMenu
 from project_h_core.models import Language
 from project_h_core.models import ApplicationProperties
 from project_h_core.models import Currencies
+from project_h_core.models import HostReferrals
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -297,3 +298,23 @@ class ProfileMenuResponseSerializer(serializers.Serializer):
 class SetLanguageSerializer(serializers.Serializer):
     userid = serializers.CharField(max_length=10, required=False)
     languageid = serializers.CharField(max_length=10, required=False)
+
+class ReferralsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HostReferrals
+        fields = '__all__'
+
+class HostReferralsSerializer(serializers.Serializer):
+    user = serializers.CharField(required=True, max_length=20)
+    referral_name = serializers.CharField(required=True, max_length=150)
+    referral_contact = serializers.CharField(required=True, max_length=100)
+
+class HostReferralsResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    referrals = ReferralsSerializer(many=True)
+
+class HostReferralResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    referrals = ReferralsSerializer()

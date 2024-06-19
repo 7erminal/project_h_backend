@@ -26,7 +26,7 @@ SECRET_KEY = 'blq7$l)ycb#4m9r_9c&dh-bebuc4oe&h8)g6@u^16galw65&l1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2','localhost','13.36.131.2','144.91.113.169','vmi1723037.contaboserver.net','fair-toys-occur.loca.lt']
+ALLOWED_HOSTS = ['10.0.2.2','localhost','13.36.131.2','144.91.113.169','vmi1723037.contaboserver.net','some-impalas-lose.loca.lt']
 
 
 # Application definition

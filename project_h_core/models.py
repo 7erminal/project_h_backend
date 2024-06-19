@@ -59,7 +59,9 @@ class HostDetails(models.Model):
 class HostReferrals(models.Model):
 	host_referral_id = models.AutoField(primary_key=True)
 	host_details = models.ForeignKey(HostDetails, on_delete=models.CASCADE, related_name='host_details_referral')
-	referral = models.CharField(max_length=50, null=True, blank=True)
+	name = models.CharField(max_length=150, null=True, blank=True)
+	contact = models.CharField(max_length=50, null=True, blank=True)
+	address = models.CharField(max_length=150, null=True, blank=True)
 	created_by = models.IntegerField(null=True, blank=True)
 	updated_by = models.IntegerField(null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
