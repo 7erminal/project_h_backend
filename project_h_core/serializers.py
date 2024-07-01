@@ -38,7 +38,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
-    customers = CustomerSerializer()
+    customers = CustomerSerializer(allow_null=True)
 
     class Meta:
         model = User
@@ -318,3 +318,11 @@ class HostReferralResponseSerializer(serializers.Serializer):
     response_code = serializers.CharField(required=True, max_length=20)
     response_message = serializers.CharField(required=True, max_length=100)
     referrals = ReferralsSerializer()
+
+class UserResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    user = UserSerializer(allow_null=True)
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.CharField(required=True, max_length=150)

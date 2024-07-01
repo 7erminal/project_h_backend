@@ -54,6 +54,7 @@ router.register(r'get-request-by-request', request_service.GetUserRequestsRespon
 router.register(r'get-request-conversation', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
 router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo, basename='get-request-notice-conversation')
 router.register(r'host-referral', register_views.addReferralContact, basename='host-referral')
+router.register(r'forgot-password', authentication_view.forgotPasswordViewSet, basename='forgot-password')
 
 
 urlpatterns = [

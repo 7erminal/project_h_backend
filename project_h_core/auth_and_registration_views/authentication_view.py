@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
+from django.contrib.auth.hashers import make_password
 
 from django.contrib.auth import authenticate
 import logging
@@ -16,6 +17,7 @@ from project_h_core.models import Customers
 
 from project_h_core.serializers import authenticationSerializer
 from project_h_core.serializers import authenticationResponseSerializer
+from project_h_core.serializers import ForgotPasswordSerializer
 
 class Resp:
 	def __init__(self, message, user, status):
@@ -78,8 +80,13 @@ class authenticationViewSet(viewsets.ViewSet):
 				logger.info("Check password response is ")
 				logger.info(checkPasswordResp)
 				if checkPasswordResp is True:
-					message = "USER AUTHENTICATED"
-					status_=2000
+					if serializer.data['password'] == "123456":
+						logger.info("Password is default passwords ")
+						message = "USER EXISTS BUT AUTHENTICATION FAILED"
+						status_ = 2002
+					else:
+						message = "USER AUTHENTICATED"
+						status_=2000
 				else:
 					if user.password is None or user.password == "":
 						logger.info("Password is blank ")
@@ -99,3 +106,48 @@ class authenticationViewSet(viewsets.ViewSet):
 			return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)
 		else:
 			return Response("Request Failed", status=status.HTTP_201_CREATED)
+		
+class forgotPasswordViewSet(viewsets.ViewSet):
+	def create(self, request):
+		serializer = ForgotPasswordSerializer(data=request.data)
+
+		if serializer.is_valid(raise_exception=True):
+			user = User()
+			userfound = True
+			status_ = 2001
+
+			try:
+				logger.info("checking user with mobile number")
+				user = User.objects.get(customers__mobile_number=serializer.data['email'])
+			except Exception as e:
+				logger.info("ERROR...")
+				logger.info("User not found going to check in email...")
+				logger.error(e.__cause__)
+				message = "USER NOT FOUND"
+				try:
+					logger.info("About to check in users table with email "+serializer.data['email'])
+					user = User.objects.get(email=serializer.data['email'])
+				except Exception as e:
+					logger.error("Error getting user with email so checking with username.....")
+					logger.error(e.__cause__)
+					message = "USER NOT FOUND"
+					try:
+						logger.info("About to go check with username which should surely be there")
+						user = User.objects.get(username=serializer.data['email'])
+					except Exception as ex:
+						message = "USER NOT FOUND"
+						logger.error("ERROR.......User not found anywhere")
+						logger.error(ex.__cause__)
+						userfound = False
+			
+			if userfound == True:
+				logger.info("USER FOUND!!!! Performing reset")
+				password = "123456"
+				user.password = make_password(password)
+				user.save()
+				status_ = 2000
+			
+			resp = Resp(message=message, status=status_, user=user)
+			return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)
+		else:
+			return Response("Request Failed", status=status.HTTP_400_BAD_REQUEST)

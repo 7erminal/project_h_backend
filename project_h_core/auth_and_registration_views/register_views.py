@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db import IntegrityError
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from datetime import date, datetime, timedelta
@@ -28,6 +29,7 @@ from project_h_core.serializers import HostReferralsSerializer
 from project_h_core.serializers import HostReferralsResponseSerializer
 from project_h_core.serializers import HostReferralResponseSerializer
 from project_h_core.serializers import ReferralsSerializer
+from project_h_core.serializers import UserResponseSerializer
 
 class Resp:
 	def __init__(self, message, user, status):
@@ -35,6 +37,12 @@ class Resp:
 		self.user=user
 		self.status=status
 
+class UResp:
+	def __init__(self, response_message, user, response_code):
+		self.response_message=response_message
+		self.user=user
+		self.response_code=response_code
+        
 # Register Customer
 class RegisterCustomerViewSet(viewsets.ViewSet):
     def create(self, request):
@@ -49,60 +57,97 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
 
             password = serializer.data['password']
 
-            save_user = User(
-                first_name=serializer.data['first_name'],
-                last_name=serializer.data['last_name'],
-                username=serializer.data['first_name'].lower()+'.'+serializer.data['last_name'].lower(),
-                email=serializer.data['email'],
-                is_staff=0,
-                is_superuser=0,
-                is_active=1,
-                date_joined=datetime.today().strftime('%Y-%m-%d'),
-                last_login=datetime.today().strftime('%Y-%m-%d'),
-                password=make_password(password)
-            )
+            username = serializer.data['first_name'].lower().replace(" ", "")+'.'+serializer.data['last_name'].lower().replace(" ", "")
 
-            save_user.save()
-
-            # save_user.set_password(password)
-
-            customer_number = datetime.today().strftime('%Y%m%d')+str(save_user.id)
-
-            logger.info("About to save customer details ")
-            logger.info(customer_number)
-
-            if 'picture' in request.FILES:
-                logger.info("Picture there ")
-                save_customer = Customers(
-                    user=save_user,
-                    customer_number=customer_number,
-                    dob=serializer.data['dob'],
-                    gender=serializer.data['gender'],
-                    # picture=serializer.data['picture'],
-                    picture=request.FILES['picture'],
-                    mobile_number=serializer.data['mobile_number'],
-                    # address=serializer.data['address'],
-                )
-            else:
-                logger.info("Picture not there ")
-                save_customer = Customers(
-                    user=save_user,
-                    customer_number=customer_number,
-                    dob=serializer.data['dob'],
-                    gender=serializer.data['gender'],
-                    # picture=serializer.data['picture'],
-                    # picture=request.FILES['picture'],
-                    mobile_number=serializer.data['mobile_number'],
-                    # address=serializer.data['address'],
+            message = "Stressing...."
+            status_ = 5020
+            while User.objects.filter(username=username).exists():
+                letters = string.ascii_lowercase
+                result_str = ''.join(random.choice(letters) for i in range(5))
+                username = serializer.data['first_name'].lower().replace(" ", "")+'.'+serializer.data['last_name'].lower().replace(" ", "")+result_str
+                message = "Username exists"
+        
+            try:
+                save_user = User(
+                    first_name=serializer.data['first_name'],
+                    last_name=serializer.data['last_name'],
+                    username=username,
+                    email=serializer.data['email'],
+                    is_staff=0,
+                    is_superuser=0,
+                    is_active=1,
+                    date_joined=datetime.today().strftime('%Y-%m-%d'),
+                    last_login=datetime.today().strftime('%Y-%m-%d'),
+                    password=make_password(password)
                 )
 
-            save_customer.save()
+                save_user.save()
+
+                # save_user.set_password(password)
+
+                customer_number = datetime.today().strftime('%Y%m%d')+str(save_user.id)
+
+                logger.info("About to save customer details ")
+                logger.info(customer_number)
+
+            
+                if 'picture' in request.FILES:
+                    logger.info("Picture there ")
+                    save_customer = Customers(
+                        user=save_user,
+                        customer_number=customer_number,
+                        dob=serializer.data['dob'],
+                        gender=serializer.data['gender'],
+                        # picture=serializer.data['picture'],
+                        picture=request.FILES['picture'],
+                        mobile_number=serializer.data['mobile_number'],
+                        # address=serializer.data['address'],
+                    )
+                else:
+                    logger.info("Picture not there ")
+                    save_customer = Customers(
+                        user=save_user,
+                        customer_number=customer_number,
+                        dob=serializer.data['dob'],
+                        gender=serializer.data['gender'],
+                        # picture=serializer.data['picture'],
+                        # picture=request.FILES['picture'],
+                        mobile_number=serializer.data['mobile_number'],
+                        # address=serializer.data['address'],
+                    )
+                save_customer.save()
+                
+                message = "User created successfully"
+                status_ = 5000
+            except IntegrityError as e:
+                logger.error("Error saving customer!! ")
+                logger.error(e.args[1])
+                message = e.args[1]
+                if("DUPLICATE" in e.args[1].upper()):
+                    logger.info("Duplicate found")
+                    if "mobile_number" in e.args[1]:
+                        logger.info("Message change")
+                        message = "This mobile number has been used to register already. Registration failed"
+                    if 'email' in e.args[1]:
+                        message = "This email has been used to register already. Registration failed"
+                    if 'username' in e.args[1]:
+                        message = "This username has been used to register already. Registration failed"
+                    logger.info("Caught duplicate")
+                status_ = 5024
+                save_user.delete()
 
             logger.info("Customer saved ")
 
-            queryset_data = User.objects.filter(id=save_user.id).select_related('customers')
+            queryset_data = User.objects.filter(id=save_user.id).first()
 
-            return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+            logger.info("Data returned for user is ")
+            logger.info(queryset_data)
+
+            resp_ = UResp(response_message=message, response_code=status_, user=queryset_data)
+
+            resp = UserResponseSerializer(resp_)
+
+            return Response(resp.data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
