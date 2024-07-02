@@ -115,6 +115,7 @@ class forgotPasswordViewSet(viewsets.ViewSet):
 			user = User()
 			userfound = True
 			status_ = 2001
+			message = "USER NOT FOUND"
 
 			try:
 				logger.info("checking user with mobile number")
@@ -146,6 +147,7 @@ class forgotPasswordViewSet(viewsets.ViewSet):
 				user.password = make_password(password)
 				user.save()
 				status_ = 2000
+				message = "Password reset done successfully"
 			
 			resp = Resp(message=message, status=status_, user=user)
 			return Response(authenticationResponseSerializer(resp).data,status.HTTP_202_ACCEPTED)
