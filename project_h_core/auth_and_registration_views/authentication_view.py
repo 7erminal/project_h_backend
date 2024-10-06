@@ -12,9 +12,6 @@ from django.contrib.auth import authenticate
 import logging
 logger = logging.getLogger("django")
 
-from project_h_core.models import One_time_pin
-from project_h_core.models import Customers
-
 from project_h_core.serializers import authenticationSerializer
 from project_h_core.serializers import authenticationResponseSerializer
 from project_h_core.serializers import ForgotPasswordSerializer
