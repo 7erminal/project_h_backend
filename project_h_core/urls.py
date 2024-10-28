@@ -21,7 +21,7 @@ from django.conf import settings
 
 from project_h_core.auth_and_registration_views import register_views
 from project_h_core.auth_and_registration_views import authentication_view
-from project_h_core.views import getUserWithPhoneNumberViewSet
+from project_h_core.views import getUserWithPhoneNumberViewSet, getUserWithIDViewSet
 from project_h_core.auth_and_registration_views import one_time_pin
 from project_h_core.service_views import host_service
 from project_h_core.service_views import payment_view
@@ -59,6 +59,7 @@ router.register(r'forgot-password', authentication_view.forgotPasswordViewSet, b
 urlpatterns = [
     path('api/', include(router.urls)),
     path('get-user-with-phone-number', getUserWithPhoneNumberViewSet.as_view({'get': 'retrieve'}), name='check-user-exist'),
+    path('get-user-with-id', getUserWithIDViewSet.as_view({'get': 'retrieve'}), name='get-user-data'),
     path('essentials/', EssentialsViewSet.as_view(), name='essentials'),
     path('hosted-services-by-category/', host_service.GetHostedServicesByCategory.as_view({'get': 'retrieve'}), name='get-hosted-services-by-category'),
     path('hosted-services-by-user/', host_service.GetHostedServicesByUser.as_view({'get': 'retrieve'}), name='get-hosted-services-by-user'),

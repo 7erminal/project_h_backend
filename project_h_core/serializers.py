@@ -108,6 +108,7 @@ class OTPCheckSerializer(serializers.ModelSerializer):
 class authenticationSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255, required=True)
+    language = serializers.CharField(max_length=2, required=True)
 
 class authenticationResponseSerializer(serializers.Serializer):
     message = serializers.CharField(max_length=255)

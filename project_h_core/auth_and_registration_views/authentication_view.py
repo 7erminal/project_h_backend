@@ -7,6 +7,7 @@ from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 import random, string
 from django.contrib.auth.hashers import make_password
+from project_h_core.models import Customers, ApplicationProperties
 
 from django.contrib.auth import authenticate
 import logging
@@ -32,6 +33,11 @@ class authenticationViewSet(viewsets.ViewSet):
 			status_=1002
 			logger.info("Getting user details")
 
+			languageid = serializer.data['language']
+
+			logger.info("Language ID is ")
+			logger.info(languageid)
+
 			userfound = True
 
 			user = User()
@@ -45,7 +51,7 @@ class authenticationViewSet(viewsets.ViewSet):
 				logger.info("User not found going to check in email...")
 				logger.error(e)
 				try:
-					message = "USER NOT FOUND"
+					appProperties = ApplicationProperties.objects.filter(value="USER_NOT_FOUND").first()
 					logger.info("About to check in users table with email "+serializer.data['username'])
 					user = User.objects.get(email=serializer.data['username'])
 				except Exception as e:
@@ -70,33 +76,49 @@ class authenticationViewSet(viewsets.ViewSet):
 			if userfound == False:
 				logger.info("User was not found")
 				status_ = 1002
-				message = "USER NOT FOUND"
+				appProperties = ApplicationProperties.objects.filter(value="USER_NOT_FOUND").first()
 				user=User()
 			else:
 				checkPasswordResp = user.check_password(serializer.data['password'])
 				logger.info("Check password response is ")
 				logger.info(checkPasswordResp)
+				logger.info(user.id)
+				
 				if checkPasswordResp is True:
 					if serializer.data['password'] == "123456":
 						logger.info("Password is default passwords ")
-						message = "USER EXISTS BUT AUTHENTICATION FAILED"
+						appProperties = ApplicationProperties.objects.filter(value="USER_EXISTS_AUTH_FAILED").first()
 						status_ = 2002
 					else:
-						message = "USER AUTHENTICATED"
+						appProperties = ApplicationProperties.objects.filter(value="USER_AUTHENTICATED").first()
 						status_=2000
 				else:
 					if user.password is None or user.password == "":
 						logger.info("Password is blank ")
-						message = "USER EXISTS BUT AUTHENTICATION FAILED"
+						appProperties = ApplicationProperties.objects.filter(value="PASSWORD_NOT_SET").first()
 						status_ = 2002
 					else:
-						message = "AUTHENTICATION FAILED. WRONG CREDENTIALS PROVIDED."
+						logger.info("User is ")
+						logger.info(user)
+						appProperties = ApplicationProperties.objects.filter(value="INVALID_CREDENTIALS").first()
 						status_ = 2003
 				# except Exception as e:
 				# 	logger.info("ERROR:::")
 				# 	logger.info(e)
 				# 	user = None
 				# resp = [("status", status), ("message", message)]
+			if languageid == '1':	
+				message = appProperties.application_property_name_ENGLISH
+			if languageid == '2':	
+				logger.info("Language is French")
+				message = appProperties.application_property_name_FRENCH
+				logger.info("Message is ")
+				logger.info(message)
+			if languageid == '3':	
+				message = appProperties.application_property_name_SPANISH
+			if languageid == '4':	
+				message = appProperties.application_property_name_PORTUGUESE
+
 			resp = Resp(message=message, status=status_, user=user)
 			logger.info("About to send response")
 
