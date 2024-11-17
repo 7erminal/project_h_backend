@@ -35,6 +35,7 @@ class Customers(models.Model):
 	updated_by = models.IntegerField(null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now=True, blank=True)
+	password_status = models.IntegerField(default=0)
 
 class HostDetails(models.Model):
 	host_details_id = models.AutoField(primary_key=True)

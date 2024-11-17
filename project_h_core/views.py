@@ -31,7 +31,7 @@ class getUserWithPhoneNumberViewSet(viewsets.ViewSet):
     def retrieve(self, request):
         serializer = IdSerializer(data=request.query_params)
 
-        logger.info("About to get game details ... ")
+        logger.info("About to get user details with phone number ... ")
         logger.info(request.query_params.get('id'))
 
         if serializer.is_valid(raise_exception=True):
@@ -63,12 +63,12 @@ class getUserWithIDViewSet(viewsets.ViewSet):
     def retrieve(self, request):
         serializer = IdSerializer(data=request.query_params)
 
-        logger.info("About to get game details ... ")
+        logger.info("About to get user details ... ")
         logger.info(request.query_params.get('id'))
 
         if serializer.is_valid(raise_exception=True):
             logger.info(serializer.data['id'])
-            queryset_data = User.objects.filter(user_id=serializer.data['id']).all()
+            queryset_data = User.objects.get(id=serializer.data['id'])
             # queryset_data = User.objects.raw("""SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, 
             #     `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, 
             #     `auth_user`.`date_joined`, `project_h_core_customers`.`customer_id`, `project_h_core_customers`.`user_id`, 
@@ -85,9 +85,9 @@ class getUserWithIDViewSet(viewsets.ViewSet):
             #     ON (`project_h_core_customers`.`customer_id` = `project_h_core_hostdetails`.`customer_id`) WHERE `project_h_core_customers`.`mobile_number` = %s""",[request.query_params.get('id')])
 
             logger.info(queryset_data)
-            logger.info(UserSerializer(queryset_data, many=True).data)
+            logger.info(UserSerializer(queryset_data).data)
 
-            return Response(UserSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+            return Response(UserSerializer(queryset_data).data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 

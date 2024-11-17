@@ -5,9 +5,10 @@ from datetime import date, datetime, timedelta
 from rest_framework.response import Response
 from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
-import random, string
 from django.contrib.auth.hashers import make_password
-from project_h_core.models import Customers, ApplicationProperties
+from project_h_core.models import ApplicationProperties, Customers
+from django.core.mail import send_mail
+import random
 
 from django.contrib.auth import authenticate
 import logging
@@ -53,13 +54,13 @@ class authenticationViewSet(viewsets.ViewSet):
 				try:
 					appProperties = ApplicationProperties.objects.filter(value="USER_NOT_FOUND").first()
 					logger.info("About to check in users table with email "+serializer.data['username'])
-					user = User.objects.get(email=serializer.data['username'])
+					user = User.objects.get(email__iexact=serializer.data['username'])
 				except Exception as e:
 					logger.error("Error.....")
 					logger.error(e)
 					try:
 						logger.info("About to go check with username which should surely be there")
-						user = User.objects.get(username=serializer.data['username'])
+						user = User.objects.get(username__iexact=serializer.data['username'])
 					except Exception as ex:
 						logger.error("ERROR.......User not found anythere")
 						logger.error(ex)
@@ -85,7 +86,8 @@ class authenticationViewSet(viewsets.ViewSet):
 				logger.info(user.id)
 				
 				if checkPasswordResp is True:
-					if serializer.data['password'] == "123456":
+					customer = Customers.objects.get(user=user)
+					if customer.password_status == 3:
 						logger.info("Password is default passwords ")
 						appProperties = ApplicationProperties.objects.filter(value="USER_EXISTS_AUTH_FAILED").first()
 						status_ = 2002
@@ -139,6 +141,8 @@ class forgotPasswordViewSet(viewsets.ViewSet):
 			try:
 				logger.info("checking user with mobile number")
 				user = User.objects.get(customers__mobile_number=serializer.data['email'])
+				logger.info("user found is ")
+				logger.info(user)
 			except Exception as e:
 				logger.info("ERROR...")
 				logger.info("User not found going to check in email...")
@@ -146,14 +150,16 @@ class forgotPasswordViewSet(viewsets.ViewSet):
 				message = "USER NOT FOUND"
 				try:
 					logger.info("About to check in users table with email "+serializer.data['email'])
-					user = User.objects.get(email=serializer.data['email'])
+					# user = User.objects.get(email=serializer.data['email'])
+					user = User.objects.get(email__iexact=serializer.data['email'])
+					logger.info(user)
 				except Exception as e:
 					logger.error("Error getting user with email so checking with username.....")
 					logger.error(e.__cause__)
 					message = "USER NOT FOUND"
 					try:
 						logger.info("About to go check with username which should surely be there")
-						user = User.objects.get(username=serializer.data['email'])
+						user = User.objects.get(username__iexact=serializer.data['email'])
 					except Exception as ex:
 						message = "USER NOT FOUND"
 						logger.error("ERROR.......User not found anywhere")
@@ -162,9 +168,26 @@ class forgotPasswordViewSet(viewsets.ViewSet):
 			
 			if userfound == True:
 				logger.info("USER FOUND!!!! Performing reset")
-				password = "123456"
-				user.password = make_password(password)
+				logger.info(user)
+				password = random.randint(1000,9999)
+				logger.info("User::: "+user.email+" pin reset to "+str(password))
+				user.password = make_password(str(password))
+
+				customer = Customers.objects.get(user=user)
+				customer.password_status = 3
+				customer.save()
 				user.save()
+				
+
+				receiverEmail = user.email
+
+				send_mail(
+					"Your secret password for Ayekooo",
+					"Your pin has been reset successfully.\nPin is "+str(password)+".\n Do not share this with anyone.",
+					"bede.abbe@gmail.com",
+					[receiverEmail],
+					fail_silently=False,
+				)
 				status_ = 2000
 				message = "Password reset done successfully"
 			

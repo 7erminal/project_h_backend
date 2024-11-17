@@ -217,8 +217,8 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             #     `project_h_core_customers`.`updated_at` FROM `auth_user` INNER JOIN `project_h_core_customers` 
             #     ON (`auth_user`.`id` = `project_h_core_customers`.`user_id`) WHERE `project_h_core_customers`.`user_id` = %s""",[serializer.data['id']])
 
-            logger.info(queryset_data.query)
             queryset_data = User.objects.filter(id=serializer.data['id']).first()
+            # logger.info(queryset_data.query)
 
             resp_ = UResp(response_message=message, response_code=status_, user=queryset_data)
 
@@ -271,34 +271,39 @@ class UpdateCustomerPasswordViewSet(viewsets.ViewSet):
             logger.info(datetime.today)
             message="UNABLE TO CHANGE PASSWORD"
             status_="1001"
+
+            user_found = False
+            save_user = User()
             try:
                 save_user = User.objects.get(customers__mobile_number=serializer.data['username'])
-                save_user.password=make_password(serializer.data['password'])
-                save_user.save()
-                status_="2000"
-                message="PASSWORD CHANGED SUCCESSFULLY"
+                user_found = True
             except:
                 logger.info("ERROR...")
                 try:
                     logger.info("About to check in users table with email ")
-                    save_user = User.objects.get(email=serializer.data['username'])
-                    save_user.password=make_password(serializer.data['password'])
-                    save_user.save()
-                    status_="2000"
-                    message="PASSWORD CHANGED SUCCESSFULLY"
+                    save_user = User.objects.get(email__iexact=serializer.data['username'])
+                    user_found = True
                 except Exception as e:
                     logger.error("Error.....")
                     try:
-                        save_user = User.objects.get(username=serializer.data['username'])
-                        save_user.password=make_password(serializer.data['password'])
-                        save_user.save()
-                        status_="2000"
-                        message="PASSWORD CHANGED SUCCESSFULLY"
+                        save_user = User.objects.get(username__iexact=serializer.data['username'])
+                        user_found = True
                     except:
                         logger.error("ERROR.......")
-                        message="USER NOT FOUND"
-                        status_="1007"
+                        user_found = False
                         save_user=User()
+
+            if user_found == True:
+                save_user.password=make_password(serializer.data['password'])
+                save_user.save()
+                customer = Customers.objects.get(user=save_user)
+                customer.password_status = 0
+                customer.save()
+                status_="2000"
+                message="PASSWORD CHANGED SUCCESSFULLY"
+            else:
+                message="USER NOT FOUND"
+                status_="1007"
 
             resp = Resp(message=message, user=save_user, status=status_)
 
