@@ -11,12 +11,9 @@ from django.contrib.auth.hashers import make_password
 import logging
 logger = logging.getLogger("django")
 
-from project_h_core.models import Customers
-from project_h_core.models import HostDetails
-from project_h_core.models import HostReferrals
-from project_h_core.models import IDTypes
+from project_h_core.models import Customers, Documents, HostDetails, HostReferrals, IDTypes, Services
 
-from project_h_core.serializers import RegisterCustomerSerializer
+from project_h_core.serializers import RegisterCustomerSerializer, UpdateDocumentSerializer, DocumentResponseSerializer, HostDetailsResponseSerializer
 from project_h_core.serializers import UserSerializer
 from project_h_core.serializers import IdSerializer
 from project_h_core.serializers import ProfilePictureSerializer
@@ -43,6 +40,12 @@ class UResp:
 		self.user=user
 		self.response_code=response_code
         
+class ResultResp:
+	def __init__(self, response_message, result, response_code):
+		self.response_message=response_message
+		self.result=result
+		self.response_code=response_code
+
 # Register Customer
 class RegisterCustomerViewSet(viewsets.ViewSet):
     def create(self, request):
@@ -323,8 +326,14 @@ class GetHostDetails(viewsets.ViewSet):
             save_user = User.objects.get(id=serializer.data['id']) 
 
             save_customer = Customers.objects.get(user=save_user)
-            queryset_data = HostDetails.objects.filter(customer=save_customer)
-            return Response(HostDetailsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+            queryset_data = HostDetails.objects.get(customer=save_customer)
+
+            message = "Host details fetched"
+            resp_code = 5000
+
+            resp_ = ResultResp(response_message=message, response_code=resp_code, result=queryset_data)
+
+            return Response(HostDetailsResponseSerializer(resp_).data,status.HTTP_200_OK)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
@@ -337,136 +346,343 @@ class UpdateHostDetails(viewsets.ViewSet):
         if serializer.is_valid(raise_exception=True):
             logger.info("request received is ")
             logger.info(request.data)
-            
-            save_user = User.objects.get(id=serializer.data['id']) 
 
-            save_customer = Customers.objects.get(user=save_user)
+            message = "Unable to perform update"
+            status_code = 5004
 
-    
-            host_name = ''
+            queryset_data = None
 
-            if serializer.data['host_name'] != '' or serializer.data['host_name'] is not None:
-                host_name = serializer.data['host_name']
+            try:
+                service = Services.objects.get(service_id=serializer.data['service_id'])
 
-            location_cordinates = ''
+                save_user = User.objects.get(id=serializer.data['id']) 
 
-            if serializer.data['location_cordinates'] != '' or serializer.data['location_cordinates'] is not None:
-                location_cordinates = serializer.data['location_cordinates']
+                save_customer = Customers.objects.get(user=save_user)
 
-            office_address = ''
+        
+                host_name = ''
 
-            if serializer.data['office_address'] != '' or serializer.data['office_address'] is not None:
-                office_address = serializer.data['office_address']
+                if serializer.data['host_name'] != '' or serializer.data['host_name'] is not None:
+                    host_name = serializer.data['host_name']
 
-            service_coverage_zone = ''
+                location_cordinates = ''
 
-            if serializer.data['service_coverage_zone'] != '' or serializer.data['service_coverage_zone'] is not None:
-                service_coverage_zone = serializer.data['service_coverage_zone']
+                if serializer.data['location_cordinates'] != '' or serializer.data['location_cordinates'] is not None:
+                    location_cordinates = serializer.data['location_cordinates']
 
-            official_certifications = ''
+                office_address = ''
 
-            if serializer.data['official_certifications'] != '' or serializer.data['official_certifications'] is not None:
-                official_certifications = serializer.data['official_certifications']
+                if serializer.data['office_address'] != '' or serializer.data['office_address'] is not None:
+                    office_address = serializer.data['office_address']
 
-            number_of_years_practice_speciality = ''
+                service_coverage_zone = ''
 
-            if serializer.data['number_of_years_practice_speciality'] != '' or serializer.data['number_of_years_practice_speciality'] is not None:
-                number_of_years_practice_speciality = serializer.data['number_of_years_practice_speciality']
+                if serializer.data['service_coverage_zone'] != '' or serializer.data['service_coverage_zone'] is not None:
+                    service_coverage_zone = serializer.data['service_coverage_zone']
 
-            number_of_years_experience = ''
+                official_certifications = ''
 
-            if serializer.data['number_of_years_experience'] != '' or serializer.data['number_of_years_experience'] is not None:
-                number_of_years_experience = serializer.data['number_of_years_experience']
+                if serializer.data['official_certifications'] != '' or serializer.data['official_certifications'] is not None:
+                    official_certifications = serializer.data['official_certifications']
 
-            specializations = ''
+                number_of_years_practice_speciality = ''
 
-            if serializer.data['specializations'] != '' or serializer.data['specializations'] is not None:
-                specializations = serializer.data['specializations']
+                if serializer.data['number_of_years_practice_speciality'] != '' or serializer.data['number_of_years_practice_speciality'] is not None:
+                    number_of_years_practice_speciality = serializer.data['number_of_years_practice_speciality']
+
+                number_of_years_experience = ''
+
+                if serializer.data['number_of_years_experience'] != '' or serializer.data['number_of_years_experience'] is not None:
+                    number_of_years_experience = serializer.data['number_of_years_experience']
+
+                specializations = ''
+
+                if serializer.data['specializations'] != '' or serializer.data['specializations'] is not None:
+                    specializations = serializer.data['specializations']
 
 
-            languages_spoken = ''
+                languages_spoken = ''
 
-            if serializer.data['languages_spoken'] != '' or serializer.data['languages_spoken'] is not None:
-                languages_spoken = serializer.data['languages_spoken']
+                if serializer.data['languages_spoken'] != '' or serializer.data['languages_spoken'] is not None:
+                    languages_spoken = serializer.data['languages_spoken']
 
-            referrals = ''
+                referrals = ''
 
-            if serializer.data['referrals'] != '' or serializer.data['referrals'] is not None:
-                referrals = serializer.data['referrals']
+                if serializer.data['referrals'] != '' or serializer.data['referrals'] is not None:
+                    referrals = serializer.data['referrals']
 
-            queryset_data = HostDetails.objects.filter(customer=save_customer)
+                queryset_data = HostDetails.objects.filter(customer=save_customer)
 
-            if not queryset_data:
-                if 'audio_video' in request.FILES:
-                    save_host_details = HostDetails(
-                            customer=save_customer,
-                            host_name=host_name,
-                            location_cordinates=location_cordinates,
-                            office_address=office_address,
-                            service_coverage_zone=service_coverage_zone,
-                            official_certifications=official_certifications,
-                            number_of_years_practice_speciality=number_of_years_practice_speciality,
-                            number_of_years_experience=number_of_years_experience,
-                            specializations=specializations,
-                            languages_spoken=languages_spoken,
-                            audio_video=request.FILES['audio_video'],
-                            referrals=referrals
-                        )
+                if not queryset_data:
+                    if 'audio_video' in request.FILES:
+                        save_host_details = HostDetails(
+                                customer=save_customer,
+                                host_name=host_name,
+                                location_cordinates=location_cordinates,
+                                office_address=office_address,
+                                service_coverage_zone=service_coverage_zone,
+                                official_certifications=official_certifications,
+                                number_of_years_practice_speciality=number_of_years_practice_speciality,
+                                number_of_years_experience=number_of_years_experience,
+                                specializations=specializations,
+                                languages_spoken=languages_spoken,
+                                audio_video=request.FILES['audio_video'],
+                                referrals=referrals,
+                                service=service
+                            )
+                    else:
+                        save_host_details = HostDetails(
+                                host_name=host_name,
+                                customer=save_customer,
+                                location_cordinates=location_cordinates,
+                                office_address=office_address,
+                                service_coverage_zone=service_coverage_zone,
+                                official_certifications=official_certifications,
+                                number_of_years_practice_speciality=number_of_years_practice_speciality,
+                                number_of_years_experience=number_of_years_experience,
+                                specializations=specializations,
+                                languages_spoken=languages_spoken,
+                                referrals=referrals,
+                                service=service
+                                # audio_video=request.FILES['audio_video'],
+                            )
+
+
+                    save_host_details.save()
+
+                    save_customer.is_host = 1
+
+                    save_customer.save()
+
+                    logger.info(queryset_data.query)
+
+                    message = "Customer details successfully added"
+                    status_code = 5000
                 else:
-                    save_host_details = HostDetails(
-                            host_name=host_name,
-                            customer=save_customer,
-                            location_cordinates=location_cordinates,
-                            office_address=office_address,
-                            service_coverage_zone=service_coverage_zone,
-                            official_certifications=official_certifications,
-                            number_of_years_practice_speciality=number_of_years_practice_speciality,
-                            number_of_years_experience=number_of_years_experience,
-                            specializations=specializations,
-                            languages_spoken=languages_spoken,
-                            referrals=referrals
-                            # audio_video=request.FILES['audio_video'],
-                        )
+                    save_host_details = HostDetails.objects.get(customer=save_customer)
 
+                    if host_name == "":
+                        host_name = save_host_details.host_name
+                    if location_cordinates == "":
+                        location_cordinates = save_host_details.location_cordinates
+                    if office_address == "":
+                        office_address = save_host_details.office_address
+                    if service_coverage_zone == "":
+                        service_coverage_zone = save_host_details.service_coverage_zone
+                    if official_certifications == "":
+                        official_certifications = save_host_details.official_certifications
+                    if number_of_years_practice_speciality == "":
+                        number_of_years_practice_speciality = save_host_details.number_of_years_practice_speciality
+                    if number_of_years_experience == "":
+                        number_of_years_experience = save_host_details.number_of_years_experience
+                    if specializations == "":
+                        specializations = save_host_details.specializations
+                    if languages_spoken == "":
+                        languages_spoken = save_host_details.languages_spoken
+                    if referrals == "":
+                        referrals = save_host_details.referrals
 
-                save_host_details.save()
+                    save_host_details.host_name = host_name
+                    save_host_details.customer = save_customer
+                    save_host_details.location_cordinates = location_cordinates
+                    save_host_details.office_address = office_address
+                    save_host_details.service_coverage_zone = service_coverage_zone
+                    save_host_details.official_certifications = official_certifications
+                    save_host_details.number_of_years_practice_speciality = number_of_years_practice_speciality
+                    save_host_details.number_of_years_experience = number_of_years_experience
+                    save_host_details.specializations = specializations
+                    save_host_details.languages_spoken = languages_spoken
+                    save_host_details.referrals = referrals
+                    save_host_details.service = service
 
-                save_customer.is_host = 1
+                    if 'audio_video' in request.FILES:
+                        save_host_details.audio_video = request.FILES['audio_video']
 
-                save_customer.save()
+                    save_host_details.save()
 
-                logger.info(queryset_data.query)
-            else:
-                save_host_details = HostDetails.objects.get(customer=save_customer)
+                    save_customer.is_host = 1
 
-                save_host_details.host_name = host_name
-                save_host_details.customer = save_customer
-                save_host_details.location_cordinates = location_cordinates
-                save_host_details.office_address = office_address
-                save_host_details.service_coverage_zone = service_coverage_zone
-                save_host_details.official_certifications = official_certifications
-                save_host_details.number_of_years_practice_speciality = number_of_years_practice_speciality
-                save_host_details.number_of_years_experience = number_of_years_experience
-                save_host_details.specializations = specializations
-                save_host_details.languages_spoken = languages_spoken
-                save_host_details.referrals = referrals
+                    save_customer.save()
 
-                if 'audio_video' in request.FILES:
-                    save_host_details.audio_video = request.FILES['audio_video']
+                    message = "Customer details successfully updated"
+                    status_code = 5000
 
-                save_host_details.save()
+                queryset_data = HostDetails.objects.get(host_details_id=save_host_details.host_details_id)
+                # queryset_data = HostDetails.objects.get(host_details_id=save_host_details.host_details_id)
+            except Services.DoesNotExist:
+                queryset_data = None
 
-                save_customer.is_host = 1
+            resp_ = ResultResp(response_message=message, response_code=status_code, result=queryset_data)
 
-                save_customer.save()
-
-            queryset_data = HostDetails.objects.filter(host_details_id=save_host_details.host_details_id).select_related('customer')
-            # queryset_data = HostDetails.objects.get(host_details_id=save_host_details.host_details_id)
-
-            return Response(HostDetailsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+            return Response(HostDetailsResponseSerializer(resp_).data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
+# Get documents
+class DocumentsView(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        logger.info("request received is ")
+        logger.info(request.query_params)
+        message = "Document not uploaded"
+        status_ = 5068
+
+        if serializer.is_valid(raise_exception=True):
+            logger.info(serializer.data['id'])
+            queryset_data = None
+            try:
+                logger.info("Documents exist")
+                queryset_data = Documents.objects.get(customer=serializer.data['id']) 
+                logger.info("Documents exist")
+                message = "Documents fetched"
+                status_=5000
+            except Documents.DoesNotExist:
+                logger.info("Documents do not exist")
+                queryset_data = None
+                message = "No Documents found"
+                status_=5002
+
+            resp_ = ResultResp(response_message=message, response_code=status_, result=queryset_data)
+
+            return Response(DocumentResponseSerializer(resp_).data,status.HTTP_200_OK)
+        else:
+            return Response("Request Failed", status=status.HTTP_400_BAD_REQUEST)
+        
+    def put(self, request, *args, **kwargs):
+        customer_id = kwargs.get('id') 
+        customer = None
+        try:
+            customer = Customers.objects.get(customer_id=customer_id)
+            # user = User.objects.get(id=serializer.data['userid'])
+            message = "Document not uploaded"
+            status_ = 5068
+            serializer = UpdateDocumentSerializer(data=request.data)
+
+            logger.info("Customer is ")
+            logger.info(customer
+            )
+
+            if serializer.is_valid(raise_exception=True):
+                logger.info("parameters received is ")
+                logger.info(serializer)
+            
+                # save_user.set_password(password)
+                
+                if 'front_image' in request.FILES and 'back_image' in request.FILES and 'selfie' in request.FILES:
+                    logger.info("Picture there ")
+
+                    document = None
+                    idtype = None
+
+                    try:
+                        idtype = IDTypes.objects.get(IDType_id=serializer.data["id_type"])
+
+                        try:
+                            logger.info("Documents exist")
+                            document = Documents.objects.get(customer=customer) 
+
+                            document.id_number = serializer.data["id_number"]
+                            document.id_front_image = request.FILES['front_image']
+                            document.id_back_image = request.FILES['back_image']
+                            document.id_type = idtype
+                            document.selfie = request.FILES['selfie']
+                            
+                        except Documents.DoesNotExist:
+                            logger.info("Documents do not exist")
+                            document = Documents(
+                                customer=customer,
+                                id_type=idtype,
+                                id_number=serializer.data["id_number"],
+                                id_front_image=request.FILES['front_image'],
+                                id_back_image=request.FILES['back_image'],
+                                selfie=request.FILES['selfie'],
+                                created_by=customer_id
+                            )
+                        document.save()
+                        message = "Document uploaded successfully"
+                        status_ = 5000
+                    except IDTypes.DoesNotExist:
+                        logger.info("Provided ID does not exist")
+                        message = "Provided ID type does not exist"
+                        status_ = 5028
+
+                    
+                else:
+                    message = "Please upload images"
+                    status_ = 5020
+                    logger.info("Picture not there ")
+
+                
+                resp_ = ResultResp(response_message=message, response_code=status_, result=document)
+
+                return Response(DocumentResponseSerializer(resp_).data,status.HTTP_200_OK)
+            else:
+                return Response("Request Failed", status=status.HTTP_400_BAD_REQUEST)
+        except Documents.DoesNotExist:
+            message = "Customer does not exist"
+            status_ = 5021
+            resp_ = ResultResp(response_message=message, response_code=status_, result=document)
+            return Response(DocumentResponseSerializer(resp_).data,status.HTTP_204_NO_CONTENT)
+
+# Get Selfie
+class GetSelfie(viewsets.ViewSet):
+    def retrieve(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        logger.info("request received is ")
+        logger.info(request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            save_user = User.objects.get(id=serializer.data['id']) 
+
+            save_customer = Customers.objects.get(user=save_user)
+            queryset_data = HostDetails.objects.filter(customer=save_customer)
+            return Response(HostDetailsSerializer(queryset_data, many=True).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+            
+
+class UpdateSelfie(viewsets.ViewSet):
+    def create(self, request):
+        serializer = IdSerializer(data=request.query_params)
+
+        if serializer.is_valid(raise_exception=True):
+            # user = User.objects.get(id=serializer.data['userid'])
+            message = "Document not uploaded"
+            status_ = 5068
+            serializer = UpdateDocumentSerializer(data=request.data)
+            logger.info("parameters received is ")
+            logger.info(serializer)
+        
+            # save_user.set_password(password)
+
+            customer = Customers.objects.get(id=serializer.data['customer_id'])
+        
+            if 'front_image' in request.FILES and 'back_image' in request.FILES:
+                logger.info("Picture there ")
+                document = Documents(
+                    host=serializer.data[""],
+                    id_number=serializer.data["id_number"],
+                    id_front_image=request.FILES['front_image'],
+                    id_back_image=request.FILES['back_image'],
+                    created_by=customer
+                )
+
+                document.save()
+                message = "Document uploaded successfully"
+                status_ = 5000
+            else:
+                message = "Please upload images"
+                status_ = 5020
+                logger.info("Picture not there ")
+
+            resp_ = ResultResp(response_message=message, response_code=status_, result=document)
+
+            return Response(DocumentResponseSerializer(resp_).data,status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Request Failed", status=status.HTTP_201_CREATED)
+        
 #update language
 class updateLanguage(viewsets.ViewSet):
     def retrieve(self, request):

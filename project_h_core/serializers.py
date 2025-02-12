@@ -1,8 +1,7 @@
 from rest_framework import serializers
 from project_h_core.models import One_time_pin
 from django.contrib.auth.models import User
-from project_h_core.models import Customers
-from project_h_core.models import Service_images
+from project_h_core.models import Customers, Documents, IDTypes
 from project_h_core.models import Hosted_service
 from project_h_core.models import Service_reviews
 from project_h_core.models import Payment_methods
@@ -25,7 +24,19 @@ from project_h_core.models import HostReferrals
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
 
+class IdTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IDTypes
+        fields = '__all__'
+
+class ServiceSerializer(serializers.Serializer):
+    service_id = serializers.CharField(max_length=10, required=False)
+    service_name = serializers.CharField(max_length=40)
+    description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
+    service_icon = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
+
 class HostDetailsSerializer(serializers.ModelSerializer):
+    service = ServiceSerializer()
     class Meta:
         model = HostDetails
         fields = '__all__'
@@ -68,6 +79,7 @@ class RegisterCustomerSerializer(serializers.Serializer):
 
 class HostSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
+    service_id = serializers.CharField(max_length=100)
     host_name = serializers.CharField(max_length=100, required=False, allow_null=True)
     location_cordinates = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
     office_address = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
@@ -79,6 +91,13 @@ class HostSerializer(serializers.Serializer):
     audio_video = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
     languages_spoken = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
     referrals = serializers.CharField(max_length=255, required=False, allow_null=True, allow_blank=True)
+
+class UpdateDocumentSerializer(serializers.Serializer):
+    id_type = serializers.CharField(required=True)
+    id_number = serializers.CharField(max_length=255)
+    back_image = serializers.FileField()
+    front_image = serializers.FileField()
+    selfie = serializers.FileField()
 
 class HostServiceSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
@@ -327,3 +346,19 @@ class UserResponseSerializer(serializers.Serializer):
 
 class ForgotPasswordSerializer(serializers.Serializer):
     email = serializers.CharField(required=True, max_length=150)
+
+class DocumentSerializer(serializers.ModelSerializer):
+    id_type = IdTypeSerializer()
+    class Meta:
+        model = Documents
+        fields = '__all__'
+
+class DocumentResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    result = DocumentSerializer(allow_null=True)
+
+class HostDetailsResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    result = HostDetailsSerializer(allow_null=True)

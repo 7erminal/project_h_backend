@@ -41,7 +41,7 @@ router.register(r'host-service', host_service.HostServiceViewSet, basename='host
 router.register(r'add-service-review', host_service.AddReviewViewSet, basename='add-service-review')
 router.register(r'add-user-payment-method', payment_view.AddUserPaymentMethod, basename='add-user-payment-view')
 router.register(r'update-customer-details', register_views.UpdateCustomerViewSet, basename='update-customer-details')
-router.register(r'upload_image', ImageUploader.ImageUploader, basename='upload_image')
+router.register(r'upload-image', ImageUploader.ImageUploader, basename='upload-image')
 router.register(r'update-customer-image', register_views.UpdateProfileImage, basename='update-customer-image')
 router.register(r'update-host-details', register_views.UpdateHostDetails, basename='update-host-details')
 router.register(r'request-service', request_service.RequestServiceViewSet, basename='request-service')
@@ -54,6 +54,7 @@ router.register(r'get-request-conversation', request_service.GetUserRequestsResp
 router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo, basename='get-request-notice-conversation')
 router.register(r'host-referral', register_views.addReferralContact, basename='host-referral')
 router.register(r'forgot-password', authentication_view.forgotPasswordViewSet, basename='forgot-password')
+router.register(r'update-user-documents/<int:id>/', register_views.DocumentsView, basename='update-user-documents')
 
 
 urlpatterns = [
@@ -85,6 +86,9 @@ urlpatterns = [
     path('get-profile-menu', get_properties.GetServiceCategories.as_view({'get': 'retrieve'}), name='get-profile-menu'),
     path('update-language', register_views.updateLanguage.as_view({'get': 'retrieve'}), name='update-language'),
     path('get-referrals/', register_views.GetHostReferrals.as_view({'get': 'retrieve'}), name='get-referrals'),
+    path('get-user-documents', register_views.DocumentsView.as_view({'get': 'retrieve'}), name='get-user-documents'),
+    path('update-user-documents/<int:id>/', register_views.DocumentsView.as_view({'put': 'put'}), name='update-user-documents'),
+    
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -153,6 +153,8 @@ class HostServiceViewSet(viewsets.ViewSet):
 
             service_name = ''
 
+            price = 0
+
             if hostDetails.host_name is not None or hostDetails.host_name != '':
                 service_name = hostDetails.host_name
             elif serializer.data['service_name'] is not None:
@@ -162,6 +164,9 @@ class HostServiceViewSet(viewsets.ViewSet):
                     service_name = serializer.data['description']
             else:
                 service_name = serializer.data['description']
+            
+            if serializer.data['price'] != "":
+                price = serializer.data['price']
 
             _hosted_service = Hosted_service(
                 service=service_,
@@ -170,7 +175,7 @@ class HostServiceViewSet(viewsets.ViewSet):
                 location=serializer.data['location'],
                 process=processed,
                 expected_duration=serializer.data['duration'],
-                price=serializer.data['price'],
+                price=price,
                 user=user_,
                 active=1,
                 part_payment_allowed=0,
