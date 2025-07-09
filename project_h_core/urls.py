@@ -49,7 +49,7 @@ router.register(r'search', search.SearchViewSet, basename='search')
 router.register(r'request-service-post', search.RequestServiceNoticeViewSet, basename='request-service-post')
 router.register(r'respond-to-request', request_service.RespondToRequest, basename='respond-to-request')
 router.register(r'respond-to-request-notice', request_service.RespondToRequestNotice, basename='respond-to-request-notice')
-router.register(r'get-request-by-request', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
+router.register(r'get-request-by-request', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-by-request')
 router.register(r'get-request-conversation', request_service.GetUserRequestsResponsesByRequestId, basename='get-request-conversation')
 router.register(r'get-request-notice-conversation', request_service.GetUserPostedRequestsResponsesByConvo, basename='get-request-notice-conversation')
 router.register(r'host-referral', register_views.addReferralContact, basename='host-referral')
@@ -87,6 +87,7 @@ urlpatterns = [
     path('update-language', register_views.updateLanguage.as_view({'get': 'retrieve'}), name='update-language'),
     path('get-referrals/', register_views.GetHostReferrals.as_view({'get': 'retrieve'}), name='get-referrals'),
     path('get-user-documents', register_views.DocumentsView.as_view({'get': 'retrieve'}), name='get-user-documents'),
+    path('get-id-types', get_properties.GetIDTypes.as_view({'get': 'retrieve'}), name='get-id-types'),
     path('update-user-documents/<int:id>/', register_views.DocumentsView.as_view({'put': 'put'}), name='update-user-documents'),
     
 ]

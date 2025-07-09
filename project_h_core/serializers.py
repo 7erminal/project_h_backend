@@ -189,6 +189,7 @@ class HostedServicesSerializer(serializers.ModelSerializer):
     hosted_service_reviews = HostedReviewsSerializer(many=True)
     user =  UserSerializer()
     charge_currency = CurrenciesSerializer()
+    service = ServiceSerializer()
 
     class Meta:
         model = Hosted_service
@@ -362,3 +363,8 @@ class HostDetailsResponseSerializer(serializers.Serializer):
     response_code = serializers.CharField(required=True, max_length=20)
     response_message = serializers.CharField(required=True, max_length=100)
     result = HostDetailsSerializer(allow_null=True)
+
+class IDTypesResponseSerializer(serializers.Serializer):
+    response_code = serializers.CharField(required=True, max_length=20)
+    response_message = serializers.CharField(required=True, max_length=100)
+    id_types = IdTypeSerializer(many=True)

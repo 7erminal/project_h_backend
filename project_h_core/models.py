@@ -6,6 +6,7 @@ from datetime import date
 class IDTypes(models.Model):
 	IDType_id = models.AutoField(primary_key=True)
 	IDType_name = models.CharField(max_length=40)
+	language = models.CharField(max_length=20, null=True, blank=True)
 	active = models.SmallIntegerField(null=True, blank=True)
 
 class Customers(models.Model):
@@ -301,7 +302,9 @@ class RequestNotice(models.Model):
 
 class RequestResponses(models.Model):
 	class Meta():
-		index_together = [['conversation_id']]
+		indexes = [
+			models.Index(fields=["conversation_id"]),
+		]
 	request_response_id = models.AutoField(primary_key=True)
 	request = models.ForeignKey(Requests, on_delete=models.CASCADE, related_name='response_request')
 	conversation_id = models.CharField(max_length=255, null=True, blank=True)
@@ -316,7 +319,9 @@ class RequestResponses(models.Model):
 
 class RequestNoticeResponses(models.Model):
 	class Meta():
-		index_together = [['conversation_id']]
+		indexes = [
+			models.Index(fields=["conversation_id"]),
+		]
 	request_response_id = models.AutoField(primary_key=True)
 	request_notice = models.ForeignKey(RequestNotice, on_delete=models.CASCADE, related_name='response_request_notice')
 	conversation_id = models.CharField(max_length=255, null=True, blank=True)
