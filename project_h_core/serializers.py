@@ -149,6 +149,10 @@ class ImageSerializer(serializers.Serializer):
 class ServiceSerializer(serializers.Serializer):
     service_id = serializers.CharField(max_length=10, required=False)
     service_name = serializers.CharField(max_length=40)
+    service_category_name_ENGLISH = serializers.CharField(max_length=100)
+    service_category_name_FRENCH = serializers.CharField(max_length=100, required=False, allow_null=True, allow_blank=True)
+    service_category_name_SPANISH = serializers.CharField(max_length=100, required=False, allow_null=True, allow_blank=True)
+    service_category_name_PORTUGUESE = serializers.CharField(max_length=100, required=False, allow_null=True, allow_blank=True)
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     service_icon = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
 
