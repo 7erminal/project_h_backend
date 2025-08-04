@@ -105,6 +105,7 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
                         picture=request.FILES['picture'],
                         mobile_number=serializer.data['mobile_number'],
                         # address=serializer.data['address'],
+                        language_id=2
                     )
                 else:
                     logger.info("Picture not there ")
@@ -117,6 +118,7 @@ class RegisterCustomerViewSet(viewsets.ViewSet):
                         # picture=request.FILES['picture'],
                         mobile_number=serializer.data['mobile_number'],
                         # address=serializer.data['address'],
+                        language_id=2
                     )
                 save_customer.save()
                 
