@@ -194,6 +194,7 @@ class Service_reviews(models.Model):
 class Countries(models.Model):
 	country_id = models.AutoField(primary_key=True)
 	country_name = models.CharField(max_length=50, unique=True)
+	country_code = models.CharField(max_length=5, unique=True, null=True, blank=True)
 	can_onboard = models.SmallIntegerField(null=True, blank=True)
 	active = models.SmallIntegerField(null=True, blank=True)
 	created_by = models.IntegerField(null=True, blank=True)
@@ -375,6 +376,7 @@ class ProfileMenu(models.Model):
 class Language(models.Model):
 	language_id = models.AutoField(primary_key=True)
 	language = models.CharField(max_length=150)
+	country = models.ForeignKey(Countries, null=True, blank=True, on_delete=models.CASCADE, related_name='language_country')
 	active=models.BooleanField(default=1)
 	created_by = models.IntegerField(null=True, blank=True)
 	updated_by = models.IntegerField(null=True, blank=True)

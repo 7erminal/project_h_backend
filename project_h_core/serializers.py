@@ -19,7 +19,7 @@ from project_h_core.models import ProfileMenu
 from project_h_core.models import Language
 from project_h_core.models import ApplicationProperties
 from project_h_core.models import Currencies
-from project_h_core.models import HostReferrals
+from project_h_core.models import HostReferrals, Countries
 
 class IdSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=25)
@@ -268,7 +268,11 @@ class ResponseSerializer(serializers.Serializer):
 
 class ViewCountUpdateSerializer(serializers.Serializer):
     request_id = serializers.CharField(required=True, max_length=50)
-    
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Countries
+        fields = '__all__'
 
 class RequestNoticeResponseSerializer(serializers.ModelSerializer):
     request_notice = RequestNoticeSerializer()

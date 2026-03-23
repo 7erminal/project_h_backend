@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from datetime import date, datetime, timedelta
 from rest_framework.response import Response
 from rest_framework import status
 from drf_multiple_model.views import ObjectMultipleModelAPIView
@@ -16,13 +15,13 @@ from .serializers import UserSerializer
 from .serializers import LanguageSerializer
 from .serializers import ApplicationPropertySerializer
 from .serializers import ServicesAndSubCategoriesSerializer
-from .serializers import CurrenciesSerializer
+from .serializers import CurrenciesSerializer, CountrySerializer
 
 from project_h_core.models import Services
 from project_h_core.models import ProfileMenu
 from project_h_core.models import Language
 from project_h_core.models import ApplicationProperties
-from project_h_core.models import Currencies
+from project_h_core.models import Currencies, Countries
 
 
 # Create your views here.
@@ -97,5 +96,6 @@ class EssentialsViewSet(ObjectMultipleModelAPIView):
         {'queryset': Currencies.objects.all(), 'serializer_class': CurrenciesSerializer},
         {'queryset': ProfileMenu.objects.all(), 'serializer_class': ProfileMenuSerializer},
         {'queryset': Language.objects.all(), 'serializer_class': LanguageSerializer},
+        {'queryset': Countries.objects.all(), 'serializer_class': CountrySerializer},
         {'queryset': ApplicationProperties.objects.all(), 'serializer_class': ApplicationPropertySerializer}
     ]
