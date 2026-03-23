@@ -105,6 +105,7 @@ class HostServiceSerializer(serializers.Serializer):
     service_name = serializers.CharField(max_length=50, required=False, allow_null=True, allow_blank=True)
     description = serializers.CharField(max_length=255, allow_null=True, allow_blank=True)
     location = serializers.CharField(max_length=100, allow_null=True, allow_blank=True, required=False)
+    location_coordinates = serializers.CharField(max_length=200, allow_null=True, allow_blank=True, required=False)
     process = serializers.CharField(max_length=255, allow_null=True, allow_blank=True, required=False)
     duration = serializers.CharField(max_length=20, allow_null=True, allow_blank=True)
     price = serializers.CharField(allow_null=True, allow_blank=True)

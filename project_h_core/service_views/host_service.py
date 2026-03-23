@@ -173,6 +173,7 @@ class HostServiceViewSet(viewsets.ViewSet):
                 service_name=service_name,
                 description=serializer.data['description'],
                 location=serializer.data['location'],
+                location_coordinates=serializer.data['location_coordinates'],
                 process=processed,
                 expected_duration=serializer.data['duration'],
                 price=price,
