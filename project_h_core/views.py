@@ -95,7 +95,7 @@ class EssentialsViewSet(ObjectMultipleModelAPIView):
         {'queryset': Services.objects.all(), 'serializer_class': ServicesAndSubCategoriesSerializer},
         {'queryset': Currencies.objects.all(), 'serializer_class': CurrenciesSerializer},
         {'queryset': ProfileMenu.objects.all(), 'serializer_class': ProfileMenuSerializer},
-        {'queryset': Language.objects.all(), 'serializer_class': LanguageSerializer},
+        {'queryset': Language.objects.select_related('country').all(), 'serializer_class': LanguageSerializer},
         {'queryset': Countries.objects.all(), 'serializer_class': CountrySerializer},
         {'queryset': ApplicationProperties.objects.all(), 'serializer_class': ApplicationPropertySerializer}
     ]

@@ -306,6 +306,8 @@ class ProfileMenuSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LanguageSerializer(serializers.ModelSerializer):
+    country = CountrySerializer(read_only=True)
+
     class Meta:
         model = Language
         fields = '__all__'
