@@ -70,7 +70,7 @@ class RegisterCustomerSerializer(serializers.Serializer):
     picture = serializers.ImageField(max_length=255, required=False)
     id_type = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     id_number = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
-    location = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
+    location = serializers.CharField(max_length=255, allow_null=True, allow_blank=True, required=False)
     nationality = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     profession = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
     is_verified = serializers.CharField(max_length=25, allow_null=True, allow_blank=True, required=False)
