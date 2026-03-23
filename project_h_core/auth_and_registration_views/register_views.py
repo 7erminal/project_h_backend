@@ -233,8 +233,8 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
 
-    def put(self, request, *args, **kwargs):
-        customer_id = kwargs.get('id') 
+    def update(self, request, pk=None, *args, **kwargs):
+        customer_id = pk or kwargs.get('id')
         customer = None
         try:
             customer = Customers.objects.get(customer_id=customer_id)
@@ -256,6 +256,10 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             status_code = 5004
             resp_ = ResultResp(response_message=message, response_code=status_code, result=None)
             return Response(UserResponseSerializer(resp_).data,status.HTTP_404_NOT_FOUND)
+
+    # Backward-compatibility if this method is referenced directly elsewhere.
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
             
 
 
