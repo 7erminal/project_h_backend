@@ -26,7 +26,7 @@ from project_h_core.serializers import HostReferralsSerializer
 from project_h_core.serializers import HostReferralsResponseSerializer
 from project_h_core.serializers import HostReferralResponseSerializer
 from project_h_core.serializers import ReferralsSerializer
-from project_h_core.serializers import UserResponseSerializer
+from project_h_core.serializers import UserResponseSerializer, VerifyCustomerSerializer
 
 class Resp:
 	def __init__(self, message, user, status):
@@ -232,6 +232,31 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             return Response(resp.data,status.HTTP_202_ACCEPTED)
         else:
             return Response("Request Failed", status=status.HTTP_201_CREATED)
+
+    def put(self, request, *args, **kwargs):
+        customer_id = kwargs.get('id') 
+        customer = None
+        try:
+            customer = Customers.objects.get(customer_id=customer_id)
+            serializer = VerifyCustomerSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                verification_status = serializer.data['verificationStatus']
+                customer.is_verified = verification_status
+                customer.save()
+                message = "Customer verification status updated successfully"
+                status_code = 5000
+            else:
+                message = "Invalid data. Update failed"
+                status_code = 5003
+            resp_ = ResultResp(response_message=message, response_code=status_code, result=None)
+            return Response(UserResponseSerializer(resp_).data,status.HTTP_202_ACCEPTED)
+        except Customers.DoesNotExist:
+            logger.info("Customer does not exist. Return error.")
+            message = "Customer not found. Update failed"
+            status_code = 5004
+            resp_ = ResultResp(response_message=message, response_code=status_code, result=None)
+            return Response(UserResponseSerializer(resp_).data,status.HTTP_404_NOT_FOUND)
+            
 
 
 class UpdateProfileImage(viewsets.ViewSet):

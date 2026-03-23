@@ -99,6 +99,9 @@ class UpdateDocumentSerializer(serializers.Serializer):
     front_image = serializers.FileField()
     selfie = serializers.FileField()
 
+class VerifyCustomerSerializer(serializers.Serializer):
+    verificationStatus = serializers.BooleanField(required=True)
+
 class HostServiceSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=10, required=False)
     parent_service = serializers.CharField(max_length=40, allow_null=True, allow_blank=True, required=False)
