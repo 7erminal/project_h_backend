@@ -242,9 +242,13 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             if serializer.is_valid(raise_exception=True):
                 verification_status = serializer.data['verificationStatus']
                 customer.is_verified = verification_status
+                logger.info("Verification status updated to ")
+                logger.info(verification_status)
                 customer.save()
                 message = "Customer verification status updated successfully"
                 status_code = 5000
+                logger.info("Customer data now is ")
+                logger.info(customer)
             else:
                 message = "Invalid data. Update failed"
                 status_code = 5003
