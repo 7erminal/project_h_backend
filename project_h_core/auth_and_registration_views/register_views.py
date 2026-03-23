@@ -604,6 +604,11 @@ class DocumentsView(viewsets.ViewSet):
                                 created_by=customer_id
                             )
                         document.save()
+
+                        customer.ID_number = serializer.data['id_number']
+                        customer.ID_type = idtype
+
+                        customer.save()
                         message = "Document uploaded successfully"
                         status_ = 5000
                     except IDTypes.DoesNotExist:
