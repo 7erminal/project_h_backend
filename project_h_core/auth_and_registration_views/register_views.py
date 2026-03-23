@@ -248,7 +248,7 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             else:
                 message = "Invalid data. Update failed"
                 status_code = 5003
-            resp_ = ResultResp(response_message=message, response_code=status_code, result=None)
+            resp_ = ResultResp(response_message=message, response_code=status_code, result=customer)
             return Response(UserResponseSerializer(resp_).data,status.HTTP_202_ACCEPTED)
         except Customers.DoesNotExist:
             logger.info("Customer does not exist. Return error.")
