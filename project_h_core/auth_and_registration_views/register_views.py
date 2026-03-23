@@ -346,7 +346,7 @@ class UpdateHostDetails(viewsets.ViewSet):
         serializer = HostSerializer(data=request.data)
         
         if serializer.is_valid(raise_exception=True):
-            logger.info("request received is ")
+            logger.info("request received to update host details is ")
             logger.info(request.data)
 
             message = "Unable to perform update"
@@ -461,6 +461,7 @@ class UpdateHostDetails(viewsets.ViewSet):
                     message = "Customer details successfully added"
                     status_code = 5000
                 else:
+                    logger.info("Host details exist. About to update")
                     save_host_details = HostDetails.objects.get(customer=save_customer)
 
                     if host_name == "":
@@ -497,6 +498,7 @@ class UpdateHostDetails(viewsets.ViewSet):
                     save_host_details.referrals = referrals
                     save_host_details.service = service
 
+                    logger.info("Host details updated. About to check for audio video")
                     if 'audio_video' in request.FILES:
                         save_host_details.audio_video = request.FILES['audio_video']
 
