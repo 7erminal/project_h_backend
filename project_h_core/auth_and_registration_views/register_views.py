@@ -239,12 +239,14 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
         try:
             customer = Customers.objects.get(customer_id=customer_id)
             serializer = VerifyCustomerSerializer(data=request.data)
+            user = User
             if serializer.is_valid(raise_exception=True):
                 verification_status = serializer.data['verificationStatus']
                 customer.is_verified = verification_status
                 logger.info("Verification status updated to ")
                 logger.info(verification_status)
                 customer.save()
+                user = User.objects.get(id=customer.user_id) 
                 message = "Customer verification status updated successfully"
                 status_code = 5000
                 logger.info("Customer data now is ")
@@ -252,7 +254,7 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
             else:
                 message = "Invalid data. Update failed"
                 status_code = 5003
-            resp_ = ResultResp(response_message=message, response_code=status_code, result=customer)
+            resp_ = UResp(response_message=message, response_code=status_code, user=user)
             return Response(UserResponseSerializer(resp_).data,status.HTTP_202_ACCEPTED)
         except Customers.DoesNotExist:
             logger.info("Customer does not exist. Return error.")
