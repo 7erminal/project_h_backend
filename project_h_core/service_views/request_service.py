@@ -93,7 +93,7 @@ class RequestServiceViewSet(viewsets.ViewSet):
             requester = User.objects.get(id=serializer.data['requester_id'])
             host = User.objects.get(id=serializer.data['host'])
             # payment_option = User_payment_methods.objects.get(id=serializer.data['payment_option'])
-            payment_option = User_payment_methods.objects.get(id=serializer.data['payment_option'])
+            payment_option = User_payment_methods.objects.filter(active=1).get(id=serializer.data['payment_option'])
             
             logger.info("Payment options are ")
             # logger.info(UserPaymentMethodSerializer(payment_option).data)
