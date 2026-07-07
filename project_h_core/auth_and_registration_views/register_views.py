@@ -194,6 +194,7 @@ class UpdateCustomerViewSet(viewsets.ViewSet):
 
             # save_customer.mobile_number=serializer.data['mobile_number']
             save_customer.address=serializer.data['address']
+            save_customer.delivery_location=serializer.data['address']
 
             logger.info("ID Number is ")
             logger.info(serializer.data['id_number'])
