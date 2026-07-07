@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.db.models import FloatField
+from django.db.models.expressions import RawSQL
 from rest_framework import viewsets
 from datetime import date, datetime, timedelta
 from rest_framework.response import Response
@@ -28,11 +30,70 @@ logger = logging.getLogger("django")
 
 class GetHostedServices(viewsets.ViewSet):
     def retrieve(self, request):
-        hosted_service = Hosted_service.objects.all()
+        latitude = request.query_params.get('latitude')
+        longitude = request.query_params.get('longitude')
+
+        queryset = Hosted_service.objects.all()
+
+        # Apply geo filtering only when both params are provided.
+        if latitude and longitude:
+            logger.info(f"Filtering hosted services by location: Latitude={latitude}, Longitude={longitude}")
+            try:
+                float(latitude)
+                float(longitude)
+            except (TypeError, ValueError):
+                return Response(
+                    {"detail": "Latitude and Longitude must be valid numbers."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            try:
+                radius_km = float(request.query_params.get('radius', 5))
+            except (TypeError, ValueError):
+                return Response(
+                    {"detail": "radius must be a valid number."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            if radius_km < 0:
+                return Response(
+                    {"detail": "radius must be greater than or equal to 0."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            distance_sql = """
+        6371 * acos(
+            cos(radians(%s)) * cos(radians(CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(location_cordinates, ',', 1), ',', -1) AS FLOAT)))
+            * cos(radians(CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(location_cordinates, ',', 2), ',', -1) AS FLOAT)) - radians(%s))
+            + sin(radians(%s)) * sin(radians(CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(location_cordinates, ',', 1), ',', -1) AS FLOAT)))
+        )
+    """
+
+            annotated_queryset = Hosted_service.objects.annotate(
+                distance=RawSQL(distance_sql, [latitude, longitude, latitude], output_field=FloatField())
+            ).order_by('distance')
+
+            # Retry with larger radii (+5 each time) up to 3 increments.
+            queryset = None
+            for attempt in range(4):
+                current_radius = radius_km + (attempt * 5)
+                candidate_queryset = annotated_queryset.filter(distance__lte=current_radius)
+                if candidate_queryset.exists():
+                    queryset = candidate_queryset
+                    break
+
+            # If nothing found after all retries, return all services.
+            if queryset is None:
+                queryset = Hosted_service.objects.all()
+        elif latitude or longitude:
+            return Response(
+                {"detail": "Provide both latitude and longitude to apply location filtering."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # logger.info(hosted_service.values())
 
-        return Response(HostedServicesSerializer(hosted_service, many=True).data,status.HTTP_202_ACCEPTED)
+        return Response(HostedServicesSerializer(queryset, many=True).data,status.HTTP_202_ACCEPTED)
 
 # Get Hosted Services by Category ID
 class GetHostedServicesByCategory(viewsets.ViewSet):
