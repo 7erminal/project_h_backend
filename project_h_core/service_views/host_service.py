@@ -30,6 +30,8 @@ logger = logging.getLogger("django")
 
 class GetHostedServices(viewsets.ViewSet):
     def retrieve(self, request):
+        logger.info("Get hosted services Request params are ")
+        logger.info(request.query_params)
         latitude = request.query_params.get('latitude')
         longitude = request.query_params.get('longitude')
 
