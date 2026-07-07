@@ -83,6 +83,8 @@ class GetHostedServices(viewsets.ViewSet):
                 if candidate_queryset.exists():
                     queryset = candidate_queryset
                     break
+                else:
+                    logger.info(f"No services found within {current_radius} km. Retrying with a larger radius...")
 
             # If nothing found after all retries, return all services.
             if queryset is None:
