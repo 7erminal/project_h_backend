@@ -35,7 +35,13 @@ class GetHostedServices(viewsets.ViewSet):
         latitude = request.query_params.get('latitude')
         longitude = request.query_params.get('longitude')
 
-        queryset = Hosted_service.objects.all()
+        serviceId = request.query_params.get('serviceId')
+
+        base_queryset = Hosted_service.objects.all()
+        if serviceId is not None and str(serviceId).strip() != "":
+            base_queryset = base_queryset.filter(service_id=serviceId)
+
+        queryset = base_queryset
 
         # Apply geo filtering only when both params are provided.
         if latitude and longitude:
@@ -71,7 +77,7 @@ class GetHostedServices(viewsets.ViewSet):
         )
     """
 
-            annotated_queryset = Hosted_service.objects.annotate(
+            annotated_queryset = base_queryset.annotate(
                 distance=RawSQL(distance_sql, [latitude, longitude, latitude], output_field=FloatField())
             ).order_by('distance')
 
@@ -88,7 +94,7 @@ class GetHostedServices(viewsets.ViewSet):
 
             # If nothing found after all retries, return all services.
             if queryset is None:
-                queryset = Hosted_service.objects.all()
+                queryset = base_queryset
         elif latitude or longitude:
             return Response(
                 {"detail": "Provide both latitude and longitude to apply location filtering."},
